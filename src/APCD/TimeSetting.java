@@ -46,9 +46,8 @@ public class TimeSetting extends javax.swing.JFrame {
             instance = new TimeSetting();
 
         }
-
+        instance.loadData();
         return instance;
-
     }
 
     private void initForm() {
@@ -425,30 +424,55 @@ public class TimeSetting extends javax.swing.JFrame {
 
     private void setFieldsValues(Users.UserInfo.UserTimeSetting userTimeSettings) {
         Date date = new Date();
-
+        JSpinner tempSpinner = null;
         if (userTimeSettings.getBeforeBreakfast() != null) {
-            beforeBreakFastPanel.add(Util.createDatePicker(userTimeSettings.getBeforeBreakfast()));
+            if (beforeBreakFastPanel.getComponents().length == 0) {
+                beforeBreakFastPanel.add(Util.createDatePicker(userTimeSettings.getBeforeBreakfast()));
+            } else {
+                tempSpinner = (JSpinner) beforeBreakFastPanel.getComponent(0);
+                Util.setDatePickerWithTime(tempSpinner, userTimeSettings.getBeforeBreakfast());
+            }
         } else {
             breakfastpanel.add(Util.createDatePicker(date));
         }
 
         if (userTimeSettings.getBreackfast() != null) {
-            breakfastpanel.add(Util.createDatePicker(userTimeSettings.getBreackfast()));
+            if (breakfastpanel.getComponents().length == 0) {
+                breakfastpanel.add(Util.createDatePicker(userTimeSettings.getBreackfast()));
+            } else {
+                tempSpinner = (JSpinner) breakfastpanel.getComponent(0);
+                Util.setDatePickerWithTime(tempSpinner, userTimeSettings.getBreackfast());
+            }
         } else {
             breakfastpanel.add(Util.createDatePicker(date));
         }
         if (userTimeSettings.getLunch() != null) {
-            lunchPanel.add(Util.createDatePicker(userTimeSettings.getLunch()));
+            if (lunchPanel.getComponents().length == 0) {
+                lunchPanel.add(Util.createDatePicker(userTimeSettings.getLunch()));
+            } else {
+                tempSpinner = (JSpinner) lunchPanel.getComponent(0);
+                Util.setDatePickerWithTime(tempSpinner, userTimeSettings.getLunch());
+            }
         } else {
             lunchPanel.add(Util.createDatePicker(date));
         }
         if (userTimeSettings.getDinner() != null) {
-            dinnerPanel.add(Util.createDatePicker(userTimeSettings.getDinner()));
+            if (dinnerPanel.getComponents().length == 0) {
+                dinnerPanel.add(Util.createDatePicker(userTimeSettings.getDinner()));
+            } else {
+                tempSpinner = (JSpinner) dinnerPanel.getComponent(0);
+                Util.setDatePickerWithTime(tempSpinner, userTimeSettings.getDinner());
+            }
         } else {
             dinnerPanel.add(Util.createDatePicker(date));
         }
         if (userTimeSettings.getBeforeSleep() != null) {
-            beforeSleepPanel.add(Util.createDatePicker(userTimeSettings.getBeforeSleep()));
+            if (beforeSleepPanel.getComponents().length == 0) {
+                beforeSleepPanel.add(Util.createDatePicker(userTimeSettings.getBeforeSleep()));
+            } else {
+                tempSpinner = (JSpinner) beforeSleepPanel.getComponent(0);
+                Util.setDatePickerWithTime(tempSpinner, userTimeSettings.getBeforeSleep());
+            }
         } else {
             beforeSleepPanel.add(Util.createDatePicker(date));
         }
@@ -459,10 +483,9 @@ public class TimeSetting extends javax.swing.JFrame {
 
         Date date = new Date();
         for (Component c : timePanel.getComponents()) {
-            
+
             if (c instanceof JPanel) {
-                for(int i = 0 ; i < ((JPanel) c ).getComponents().length ; i++)
-                {
+                for (int i = 0; i < ((JPanel) c).getComponents().length; i++) {
                     ((JPanel) c).remove(i);
                 }
                 ((JPanel) c).add(Util.createDatePicker(date));

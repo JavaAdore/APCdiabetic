@@ -183,6 +183,7 @@ public class Util {
 
     public static JSpinner createDatePicker(Date date) {
         JSpinner timeSpinner = new JSpinner(new SpinnerDateModel());
+
         JSpinner.DateEditor timeEditor = new JSpinner.DateEditor(timeSpinner, "hh:mm a");
 
         timeSpinner.setEditor(timeEditor);
@@ -469,14 +470,12 @@ public class Util {
     }
 
     public static boolean areStringsEqualEachOther(String str1, String str2) {
-        if (str1 != null && str2 != null) { 
-            try
-            {
+        if (str1 != null && str2 != null) {
+            try {
                 double firstNumber = Double.parseDouble(str1);
                 double secondNumber = Double.parseDouble(str2);
-                return firstNumber== secondNumber;
-            }catch(Exception ex)
-            {
+                return firstNumber == secondNumber;
+            } catch (Exception ex) {
                 // Do nothing , in case of the two strings are numbers deal with them as a number 
                 //    if not go a head and continue;
             }
@@ -499,13 +498,27 @@ public class Util {
                 if (((int) currentChar) >= 65 && ((int) currentChar) <= 90) {
                     stringBuilder.insert(i, " ");
                     stringBuilder.append(String.valueOf(currentChar).toUpperCase());
-                }else
-                {
-                                    stringBuilder.append(String.valueOf(currentChar).toLowerCase());
+                } else {
+                    stringBuilder.append(String.valueOf(currentChar).toLowerCase());
 
                 }
             }
         }
         return stringBuilder.toString();
     }
+
+    public static void setDatePickerWithTime(JSpinner timeSpinner, Date date) {
+
+        JSpinner.DateEditor timeEditor = new JSpinner.DateEditor(timeSpinner, "hh:mm a");
+        timeSpinner.setEditor(timeEditor);
+        timeSpinner.setValue(date);
+    }
+    
+     public static void setDatePickerWithTime(JSpinner timeSpinner, XMLGregorianCalendar date) {
+
+        JSpinner.DateEditor timeEditor = new JSpinner.DateEditor(timeSpinner, "hh:mm a");
+        timeSpinner.setEditor(timeEditor);
+        timeSpinner.setValue(date.toGregorianCalendar().getTime());
+    }
+     
 }
