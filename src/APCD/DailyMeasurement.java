@@ -21,9 +21,9 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.xml.bind.JAXBException;
-import util.CustomException;
-import util.Utils;
-import util.ValueContainer;
+import utils.CustomException;
+import utils.Util;
+import utils.ValueContainer;
 import xml.Users;
 import xml.Users.UserInfo;
 
@@ -44,35 +44,33 @@ public class DailyMeasurement extends javax.swing.JFrame {
      */
     public static AlertThread alertThread = new AlertThread();
 
-    static void correctMeasurementStructure(UserInfo.DailyMeasurement data) 
-    {
-      
-        
-    
+    static void correctMeasurementStructure(UserInfo.DailyMeasurement data) {
+
     }
     double totalformMeasurementBeforeEdition = 0;
 
     private static DailyMeasurement instance;
+
     private DailyMeasurement() {
         initComponents();
         initForm();
         loadFields();
         startAlertThread();
-        
 
     }
-    
-    public static DailyMeasurement getInstance()
-    {
-        if(instance == null)
-        {
+
+    public static DailyMeasurement getInstance() {
+        if (instance == null) {
             instance = new DailyMeasurement();
         }
-        return instance;
+         instance.loadFields();
+         instance.loadUserDailyMeasurmentsIntoMap();
+         return instance;
+         
     }
 
     DailyMeasurement(String text, String text0) {
-        
+
     }
 
     /**
@@ -365,18 +363,30 @@ public class DailyMeasurement extends javax.swing.JFrame {
 
     private void calculateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateButtonActionPerformed
 
-        popUpMeasurementChanges();
-
+        // popUpMeasurementChanges();
+        Map<String, String> checkingResultMap = doCheckesAndFetchResults();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String key : checkingResultMap.keySet()) {
+            String checkingResut = checkingResultMap.get(key);
+            stringBuilder.append(String.format("%s checking result :%s \n", Util.camelCasingStylingToNormal(key) ,checkingResut));
+        }
+        if(stringBuilder.toString().trim().length()!=0)
+        {
+            Util.displayMessage(this, stringBuilder.toString());
+        }else
+        {
+            Util.displayMessage(this, Util.NO_CHANGES_HAPPEND);
+        }
     }//GEN-LAST:event_calculateButtonActionPerformed
 
     private void TableOfMeasurementsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TableOfMeasurementsButtonActionPerformed
-        TableOfMeasurements tm =  TableOfMeasurements.getInstance();
+        TableOfMeasurements tm = TableOfMeasurements.getInstance();
         tm.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_TableOfMeasurementsButtonActionPerformed
 
     private void timesettingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timesettingButtonActionPerformed
-        TimeSetting time =  TimeSetting.getInstance();
+        TimeSetting time = TimeSetting.getInstance();
         time.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_timesettingButtonActionPerformed
@@ -386,11 +396,11 @@ public class DailyMeasurement extends javax.swing.JFrame {
         try {
             validateForm();
 
-            boolean result = Utils.displayDialogMessage(this, "Are you sure that you want to save changes ?");
+            boolean result = Util.displayDialogMessage(this, "Are you sure that you want to save changes ?");
             if (result) {
                 addNewValuesIntoUserObject();
                 persistObjectIntoDataBase();
-                Utils.hideAndShow(this,  TableOfMeasurements.getInstance());
+                Util.hideAndShow(this, TableOfMeasurements.getInstance());
             } else {
 
             }
@@ -400,7 +410,7 @@ public class DailyMeasurement extends javax.swing.JFrame {
             for (String str : ex.getMessages()) {
                 stringBuilder.append(String.format("%s \n", str));
             }
-            Utils.displayMessage(this, stringBuilder.toString());
+            Util.displayMessage(this, stringBuilder.toString());
         }
 
     }//GEN-LAST:event_SaveMeasurementActionPerformed
@@ -440,7 +450,7 @@ public class DailyMeasurement extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void initForm() {
-        Utils.initializeForm(this);
+        Util.initializeForm(this);
         for (Component c : measurePanelMain.getComponents()) {
             if (c instanceof JTextField) {
                 ((JTextField) c).addKeyListener(new KeyListener() {
@@ -470,9 +480,8 @@ public class DailyMeasurement extends javax.swing.JFrame {
             }
         }
 
-        
-        calculateButton.setEnabled(Utils.currentLoginUser.getDailyMeasurement()!=null &&Utils.currentLoginUser.getDailyMeasurement().size()>0);
-                TableOfMeasurementsButton.setEnabled(Utils.currentLoginUser.getDailyMeasurement()!=null &&Utils.currentLoginUser.getDailyMeasurement().size()>0);
+        calculateButton.setEnabled(Util.currentLoginUser.getDailyMeasurement() != null && Util.currentLoginUser.getDailyMeasurement().size() > 0);
+        TableOfMeasurementsButton.setEnabled(Util.currentLoginUser.getDailyMeasurement() != null && Util.currentLoginUser.getDailyMeasurement().size() > 0);
 
     }
 
@@ -496,8 +505,7 @@ public class DailyMeasurement extends javax.swing.JFrame {
     private void constructUserDailyMeasurement() {
 
         userDailyMeasurement = new Users.UserInfo.DailyMeasurement();
-        if(userDailyMeasurement == null)
-        {
+        if (userDailyMeasurement == null) {
             userDailyMeasurement = new Users.UserInfo.DailyMeasurement();
         }
     }
@@ -510,58 +518,58 @@ public class DailyMeasurement extends javax.swing.JFrame {
 
     private void setDataIntoFields() {
         totalformMeasurementBeforeEdition = 0;
-        if (measurementsMap.get(Utils.beforeBreakfast) != null) {
-            beforeBreakFast.setText(measurementsMap.get(Utils.beforeBreakfast).getValue() + "");
-            totalformMeasurementBeforeEdition += measurementsMap.get(Utils.beforeBreakfast).getValue();
+        if (measurementsMap.get(Util.beforeBreakfast) != null) {
+            beforeBreakFast.setText(measurementsMap.get(Util.beforeBreakfast).getValue() + "");
+            totalformMeasurementBeforeEdition += measurementsMap.get(Util.beforeBreakfast).getValue();
         }
-        if (measurementsMap.get(Utils.breakFast) != null) {
-            breakfast.setText(measurementsMap.get(Utils.beforeBreakfast).getValue() + "");
-            totalformMeasurementBeforeEdition += measurementsMap.get(Utils.beforeBreakfast).getValue();
+        if (measurementsMap.get(Util.breakfast) != null) {
+            breakfast.setText(measurementsMap.get(Util.beforeBreakfast).getValue() + "");
+            totalformMeasurementBeforeEdition += measurementsMap.get(Util.beforeBreakfast).getValue();
         }
-        if (measurementsMap.get(Utils.lunch) != null) {
-            lunch.setText(measurementsMap.get(Utils.lunch).getValue() + "");
-            totalformMeasurementBeforeEdition += measurementsMap.get(Utils.lunch).getValue();
+        if (measurementsMap.get(Util.lunch) != null) {
+            lunch.setText(measurementsMap.get(Util.lunch).getValue() + "");
+            totalformMeasurementBeforeEdition += measurementsMap.get(Util.lunch).getValue();
         }
-        if (measurementsMap.get(Utils.dinnder) != null) {
-            diner.setText(measurementsMap.get(Utils.dinnder).getValue() + "");
-            totalformMeasurementBeforeEdition += measurementsMap.get(Utils.dinnder).getValue();
+        if (measurementsMap.get(Util.dinner) != null) {
+            diner.setText(measurementsMap.get(Util.dinner).getValue() + "");
+            totalformMeasurementBeforeEdition += measurementsMap.get(Util.dinner).getValue();
         }
-        if (measurementsMap.get(Utils.beforeSleep) != null) {
-            beforeSleep.setText(measurementsMap.get(Utils.beforeSleep).getValue() + "");
-            totalformMeasurementBeforeEdition += measurementsMap.get(Utils.beforeSleep).getValue();
+        if (measurementsMap.get(Util.beforeSleep) != null) {
+            beforeSleep.setText(measurementsMap.get(Util.beforeSleep).getValue() + "");
+            totalformMeasurementBeforeEdition += measurementsMap.get(Util.beforeSleep).getValue();
         }
 
-        if (measurementsMap.get(Utils.suddenDrop) != null) {
-            suddenDrop.setText(measurementsMap.get(Utils.suddenDrop).getValue() + "");
-            totalformMeasurementBeforeEdition += measurementsMap.get(Utils.suddenDrop).getValue();
+        if (measurementsMap.get(Util.suddenDrop) != null) {
+            suddenDrop.setText(measurementsMap.get(Util.suddenDrop).getValue() + "");
+            totalformMeasurementBeforeEdition += measurementsMap.get(Util.suddenDrop).getValue();
         }
     }
 
     private void validateForm() throws CustomException {
         List<String> messages = new ArrayList();
-        if ((beforeBreakFast.getText().trim().length() > 0 && Utils.isDouble(beforeBreakFast.getText().trim())) == false) {
+        if ((beforeBreakFast.getText().trim().length() > 0 && Util.isDouble(beforeBreakFast.getText().trim())) == false) {
             messages.add("Before breakfast measure not valid");
 
         }
 
-        if ((breakfast.getText().trim().length() > 0 && Utils.isDouble(breakfast.getText().trim())) == false) {
+        if ((breakfast.getText().trim().length() > 0 && Util.isDouble(breakfast.getText().trim())) == false) {
             messages.add("Breakfast measure not valid");
 
         }
 
-        if ((lunch.getText().trim().length() > 0 && Utils.isDouble(lunch.getText().trim())) == false) {
+        if ((lunch.getText().trim().length() > 0 && Util.isDouble(lunch.getText().trim())) == false) {
             messages.add("Lunch measure not valid");
 
         }
-        if ((diner.getText().trim().length() > 0 && Utils.isDouble(diner.getText().trim())) == false) {
+        if ((diner.getText().trim().length() > 0 && Util.isDouble(diner.getText().trim())) == false) {
             messages.add("Dinner measure not valid");
 
         }
-        if ((beforeSleep.getText().trim().length() > 0 && Utils.isDouble(beforeSleep.getText().trim())) == false) {
+        if ((beforeSleep.getText().trim().length() > 0 && Util.isDouble(beforeSleep.getText().trim())) == false) {
             messages.add("Before Sleep measure not valid");
 
         }
-        if ((suddenDrop.getText().trim().length() > 0 && Utils.isDouble(suddenDrop.getText().trim())) == false) {
+        if ((suddenDrop.getText().trim().length() > 0 && Util.isDouble(suddenDrop.getText().trim())) == false) {
             messages.add("Sudden drop  measure not valid");
 
         }
@@ -576,86 +584,88 @@ public class DailyMeasurement extends javax.swing.JFrame {
 
     private void addNewValuesIntoUserObject() {
 
-        Utils.currentLoginUser.getDailyMeasurement().remove(userDailyMeasurement);
-        if(        userDailyMeasurement.getMeasurement() == null)
-        {
+        Util.currentLoginUser.getDailyMeasurement().remove(userDailyMeasurement);
+        if (userDailyMeasurement.getMeasurement() == null) {
             userDailyMeasurement = new UserInfo.DailyMeasurement();
-            userDailyMeasurement.setMeasurementDate(Utils.dateToXMLGregorianCalendar(new Date()));
+            userDailyMeasurement.setMeasurementDate(Util.dateToXMLGregorianCalendar(new Date()));
         }
         userDailyMeasurement.getMeasurement().clear();
-        userDailyMeasurement.setMeasurementDate(Utils.dateToXMLGregorianCalendar(new Date()));
+        userDailyMeasurement.setMeasurementDate(Util.dateToXMLGregorianCalendar(new Date()));
         if ((beforeBreakFast.getText().trim().length() > 0)) {
-            userDailyMeasurement.getMeasurement().add(new Users.UserInfo.DailyMeasurement.Measurement(Utils.beforeBreakfast, Double.parseDouble(beforeBreakFast.getText().trim())));
+            userDailyMeasurement.getMeasurement().add(new Users.UserInfo.DailyMeasurement.Measurement(Util.beforeBreakfast, Double.parseDouble(beforeBreakFast.getText().trim())));
         }
         if ((breakfast.getText().trim().length() > 0)) {
-            userDailyMeasurement.getMeasurement().add(new Users.UserInfo.DailyMeasurement.Measurement(Utils.breakFast, Double.parseDouble(breakfast.getText().trim())));
+            userDailyMeasurement.getMeasurement().add(new Users.UserInfo.DailyMeasurement.Measurement(Util.breakfast, Double.parseDouble(breakfast.getText().trim())));
         }
 
         if ((lunch.getText().trim().length() > 0)) {
-            userDailyMeasurement.getMeasurement().add(new Users.UserInfo.DailyMeasurement.Measurement(Utils.lunch, Double.parseDouble(lunch.getText().trim())));
+            userDailyMeasurement.getMeasurement().add(new Users.UserInfo.DailyMeasurement.Measurement(Util.lunch, Double.parseDouble(lunch.getText().trim())));
         }
 
         if ((diner.getText().trim().length() > 0)) {
-            userDailyMeasurement.getMeasurement().add(new Users.UserInfo.DailyMeasurement.Measurement(Utils.dinnder, Double.parseDouble(diner.getText().trim())));
+            userDailyMeasurement.getMeasurement().add(new Users.UserInfo.DailyMeasurement.Measurement(Util.dinner, Double.parseDouble(diner.getText().trim())));
         }
 
         if ((beforeSleep.getText().trim().length() > 0)) {
-            userDailyMeasurement.getMeasurement().add(new Users.UserInfo.DailyMeasurement.Measurement(Utils.beforeSleep, Double.parseDouble(beforeSleep.getText().trim())));
+            userDailyMeasurement.getMeasurement().add(new Users.UserInfo.DailyMeasurement.Measurement(Util.beforeSleep, Double.parseDouble(beforeSleep.getText().trim())));
         }
         if ((suddenDrop.getText().trim().length() > 0)) {
-            userDailyMeasurement.getMeasurement().add(new Users.UserInfo.DailyMeasurement.Measurement(Utils.suddenDrop, Double.parseDouble(suddenDrop.getText().trim())));
+            userDailyMeasurement.getMeasurement().add(new Users.UserInfo.DailyMeasurement.Measurement(Util.suddenDrop, Double.parseDouble(suddenDrop.getText().trim())));
         }
 
     }
 
     private void startAlertThread() {
 
-        Utils.restartThread(alertThread);
+        Util.restartThread(alertThread);
     }
 
     private void persistObjectIntoDataBase() {
-        Utils.currentLoginUser.getDailyMeasurement().remove(userDailyMeasurement);
-        Utils.currentLoginUser.getDailyMeasurement().add(userDailyMeasurement);
+        Util.currentLoginUser.getDailyMeasurement().remove(userDailyMeasurement);
+        Util.currentLoginUser.getDailyMeasurement().add(userDailyMeasurement);
         userBusiness.saveUsersBackIntoFile();
     }
 
     private void popUpMeasurementChanges() {
-        MeasurementsInfo measurementBeforeEditing = userBusiness.getMeasurementsInfo(Utils.currentLoginUser);
+
+        MeasurementsInfo measurementBeforeEditing = userBusiness.getMeasurementsInfo(Util.currentLoginUser);
         double measurementAvarageBeforeEditing = measurementBeforeEditing.getMeasurementsAvarage();
 
         List<UserInfo.DailyMeasurement> cloneCurrentUserMeasurements = cloneCurrentUserMeasurements();
 
         addNewValuesIntoUserObject();
 
-        MeasurementsInfo measurementAfter = userBusiness.getMeasurementsInfo(Utils.currentLoginUser);
+        MeasurementsInfo measurementAfter = userBusiness.getMeasurementsInfo(Util.currentLoginUser);
 
         if ((totalformMeasurementBeforeEdition != measurementAfter.getTotal())) {
             double addedValue = measurementAfter.getTotal() - measurementBeforeEditing.getTotal();
             double variation = addedValue - measurementAvarageBeforeEditing;
             if (variation > 0) {
-                Utils.displayMessage(this, String.format("Last measurement is over avarage by %s %%", Math.abs(variation)));
+                Util.displayMessage(this, String.format("Last measurement is over avarage by %s %%", Math.abs(variation)));
             } else {
-                Utils.displayMessage(this, String.format("Last measurement is lower avarage by %s %%", Math.abs(variation)));
+                Util.displayMessage(this, String.format("Last measurement is lower avarage by %s %%", Math.abs(variation)));
             }
 
         } else {
-            Utils.displayDialogMessage(this, String.format("Your measurements are in avarage"));
+            Util.displayDialogMessage(this, String.format("Your measurements are in avarage"));
 
-        }        
-        Utils.currentLoginUser.setDailyMeasurement(cloneCurrentUserMeasurements);
+        }
+        Util.currentLoginUser.setDailyMeasurement(cloneCurrentUserMeasurements);
 
         userDailyMeasurement = userBusiness.extractToDayUserDailyMeasurement();
 
     }
-    
-    
-    
-    
 
     private List<UserInfo.DailyMeasurement> cloneCurrentUserMeasurements() {
 
-        UserInfo userInfo = (UserInfo) Utils.currentLoginUser.clone();
+        UserInfo userInfo = (UserInfo) Util.currentLoginUser.clone();
         return userInfo.getDailyMeasurement();
+    }
+
+    private Map<String, String> doCheckesAndFetchResults() {
+
+        return userBusiness.getModificationResults(beforeBreakFast.getText(), breakfast.getText(), lunch.getText(), diner.getText(), beforeSleep.getText(), suddenDrop.getText());
+
     }
 
 }

@@ -6,8 +6,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.xml.bind.JAXBException;
-import util.CustomException;
-import util.Utils;
+import utils.CustomException;
+import utils.Util;
 
 public class Login extends javax.swing.JFrame {
 
@@ -34,7 +34,7 @@ public class Login extends javax.swing.JFrame {
     
     
     private void initForm() {
-        Utils.initializeForm(this);
+        Util.initializeForm(this);
     }
 
     @SuppressWarnings("unchecked")
@@ -185,23 +185,23 @@ public class Login extends javax.swing.JFrame {
 
         try {
             validateForm();
-            Utils.currentLoginUser = userBusiness.getUserByEmail(email.getText());
-            if (Utils.currentLoginUser == null) {
-                boolean result = Utils.displayDialogMessage(this, "This Email is not registered yet ,Would you like to register ?");
+            Util.currentLoginUser = userBusiness.getUserByEmail(email.getText());
+            if (Util.currentLoginUser == null) {
+                boolean result = Util.displayDialogMessage(this, "This Email is not registered yet ,Would you like to register ?");
                 if (result) {
-                    Utils.hideAndShow(this, new Register(nameTextField.getText(), email.getText()));
+                    Util.hideAndShow(this, new Register(nameTextField.getText(), email.getText()));
                 }
             } else {
-                if (nameTextField.getText().equalsIgnoreCase(Utils.currentLoginUser.getName())) {
+                if (nameTextField.getText().equalsIgnoreCase(Util.currentLoginUser.getName())) {
                     //Utils.hideAndShow(this, new DailyMeasurement());
-                    Utils.hideAndShow(this,  TimeSetting.getInstance());
+                    Util.hideAndShow(this,  TimeSetting.getInstance());
                 } else {
 
-                    Utils.displayMessage(this, "Wrong Name");
+                    Util.displayMessage(this, "Wrong Name");
                 }
             }
         } catch (CustomException ex) {
-            Utils.displayMessage(this, ex.getMessage());
+            Util.displayMessage(this, ex.getMessage());
         }
 
     }//GEN-LAST:event_login_ButtonActionPerformed
@@ -250,10 +250,10 @@ public class Login extends javax.swing.JFrame {
     private void startApplication() {
         try {
             
-            xmlFile = new File( new File(Utils.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParent() + File.separator + "Databaselast.xml");
+            xmlFile = new File( new File(Util.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParent() + File.separator + "Databaselast.xml");
             xmlFile = new File(getClass().getResource("/"+databaseName).getPath());
             try {
-                Utils.XmlUsers = Utils.unmarchalXmlToUser(xmlFile);
+                Util.XmlUsers = Util.unmarchalXmlToUser(xmlFile);
             } catch (JAXBException exception) {
                 exception.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Unable to parse XML file please contact Programmer");
@@ -299,7 +299,7 @@ public class Login extends javax.swing.JFrame {
     }
     
     private void validateForm() throws CustomException {
-        if (Utils.isEmail(email.getText()) == false) {
+        if (Util.isEmail(email.getText()) == false) {
             throw new CustomException("Please Enter your email");
         }
     }

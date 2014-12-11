@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlValue;
 import javax.xml.datatype.XMLGregorianCalendar;
-import util.Utils;
+import utils.Util;
 
 /**
  * <p>
@@ -451,10 +451,10 @@ public class Users {
                 Calendar c = Calendar.getInstance();
                 c.add(Calendar.DAY_OF_MONTH, -(7 - i));
                 DailyMeasurement dailyMeasurement = new DailyMeasurement();
-                dailyMeasurement.setMeasurementDate(Utils.dateToXMLGregorianCalendar(c.getTime()));
+                dailyMeasurement.setMeasurementDate(Util.dateToXMLGregorianCalendar(c.getTime()));
 
                 for (int x = 0; x < 7; x++) {
-                    dailyMeasurement.getMeasurement().add(new Measurement(Utils.times[x], null));
+                    dailyMeasurement.getMeasurement().add(new Measurement(Util.times[x], null));
                 }
                 return dailyMeasurement;
             }
@@ -539,7 +539,7 @@ public class Users {
             }
 
             public String[] getDataAsStringArray() {
-                String[] result = new String[Utils.times.length];
+                String[] result = new String[Util.times.length];
                 for (int i = 0; i < result.length; i++) {
 
                     try {
@@ -556,7 +556,7 @@ public class Users {
                 StringBuilder stringBuilder = new StringBuilder();
 
                 String str="                    ";
-                for (int i = 0; i < Utils.times.length; i++) {
+                for (int i = 0; i <Util.times.length; i++) {
                     
                     if(i==0)
                     {
@@ -567,13 +567,15 @@ public class Users {
                     } catch (Exception ex) {
                         str = "";
                     }
-                    str = Utils.refineWidth(str);
+                    str = Util.refineWidth(str);
                     stringBuilder.append(String.format("%s\t", str));
                 }
                 return stringBuilder.toString()+"\n";
 
             }
-
+            
+            
+            
             /**
              * <p>
              * Java class for anonymous complex type.

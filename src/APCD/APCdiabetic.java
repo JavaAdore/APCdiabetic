@@ -1,5 +1,6 @@
 package APCD;
 
+import utils.Util;
 import business.UserBusiness;
 import java.awt.Toolkit;
 import java.io.File;
@@ -7,7 +8,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.xml.bind.JAXBException;
-import util.Utils;
 
 public class APCdiabetic extends javax.swing.JFrame {
 
@@ -20,7 +20,7 @@ public class APCdiabetic extends javax.swing.JFrame {
     }
 
     private void initForm() {
-        Utils.initializeForm(this);
+        Util.initializeForm(this);
     }
 
     @SuppressWarnings("unchecked")
@@ -214,10 +214,10 @@ public class APCdiabetic extends javax.swing.JFrame {
     private void startApplication() {
         try {
             
-            xmlFile = new File( new File(Utils.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParent() + File.separator + "Databaselast.xml");
+            xmlFile = new File( new File(Util.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParent() + File.separator + "Databaselast.xml");
             xmlFile = new File(getClass().getResource("/"+databaseName).getPath());
             try {
-                Utils.XmlUsers = Utils.unmarchalXmlToUser(xmlFile);
+                Util.XmlUsers = Util.unmarchalXmlToUser(xmlFile);
             } catch (JAXBException exception) {
                 exception.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Unable to parse XML file please contact Programmer");

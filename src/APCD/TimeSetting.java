@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SwingUtilities;
 import javax.xml.datatype.XMLGregorianCalendar;
-import util.Utils;
+import utils.*;
 import xml.ObjectFactory;
 import xml.Users;
 
@@ -32,15 +32,27 @@ public class TimeSetting extends javax.swing.JFrame {
      * Creates new form TimeSetting
      */
     UserBusiness userBusiness = new UserBusiness();
-    private static TimeSetting instance;
+
     private TimeSetting() {
         initComponents();
         initForm();
         loadData();
     }
 
+    private static TimeSetting instance;
+
+    public static TimeSetting getInstance() {
+        if (instance == null) {
+            instance = new TimeSetting();
+
+        }
+
+        return instance;
+
+    }
+
     private void initForm() {
-        Utils.initializeForm(this);
+        Util.initializeForm(this);
         FlowLayout layout = new FlowLayout();
         beforeBreakFastPanel.setLayout(layout);
         breakfastpanel.setLayout(layout);
@@ -49,16 +61,6 @@ public class TimeSetting extends javax.swing.JFrame {
         beforeSleepPanel.setLayout(layout);
     }
 
-    public static TimeSetting getInstance()
-    {
-        if(instance ==null)
-        {
-        instance = new TimeSetting();
-        }
-        return instance;
-    
-    }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -68,34 +70,43 @@ public class TimeSetting extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         dateChooser = new com.toedter.calendar.JDateChooser();
-        jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-        DayLabel = new javax.swing.JLabel();
         cancelTime = new javax.swing.JButton();
         saveTime = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
+        DayLabel = new javax.swing.JLabel();
         timePanel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         beforeBreakFastPanel = new javax.swing.JPanel();
         breakfastpanel = new javax.swing.JPanel();
-        lunchPanel = new javax.swing.JPanel();
-        dinnerPanel = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
         beforeSleepPanel = new javax.swing.JPanel();
+        beforebreackfastMeasur = new javax.swing.JLabel();
+        breackfastMeasur = new javax.swing.JLabel();
+        lunchMeasur = new javax.swing.JLabel();
+        dinerMeasur = new javax.swing.JLabel();
+        beforeSleepMeasur = new javax.swing.JLabel();
+        dinnerPanel = new javax.swing.JPanel();
+        lunchPanel = new javax.swing.JPanel();
+        jSeparator3 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Time Setting");
+        setPreferredSize(new java.awt.Dimension(402, 655));
+        setResizable(false);
 
-        DayLabel.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
-        DayLabel.setText("Day :");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        cancelTime.setFont(new java.awt.Font("Californian FB", 1, 18)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TimeSetting.png"))); // NOI18N
+
+        dateChooser.setBackground(new java.awt.Color(255, 255, 255));
+        dateChooser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 0)));
+        dateChooser.setForeground(new java.awt.Color(153, 0, 0));
+
+        cancelTime.setBackground(new java.awt.Color(153, 0, 0));
+        cancelTime.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        cancelTime.setForeground(new java.awt.Color(255, 255, 0));
         cancelTime.setText("Cancel");
         cancelTime.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,7 +114,9 @@ public class TimeSetting extends javax.swing.JFrame {
             }
         });
 
-        saveTime.setFont(new java.awt.Font("Californian FB", 1, 18)); // NOI18N
+        saveTime.setBackground(new java.awt.Color(153, 0, 0));
+        saveTime.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        saveTime.setForeground(new java.awt.Color(255, 255, 0));
         saveTime.setText("Save");
         saveTime.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,210 +124,247 @@ public class TimeSetting extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/apc diabetic2.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/apc diabeticlogo Register.png"))); // NOI18N
 
-        timePanel.setBackground(new java.awt.Color(255, 255, 204));
+        DayLabel.setFont(new java.awt.Font("Comic Sans MS", 1, 22)); // NOI18N
+        DayLabel.setForeground(new java.awt.Color(0, 153, 51));
+        DayLabel.setText("Day :");
+
+        timePanel.setBackground(new java.awt.Color(255, 255, 255));
         timePanel.setForeground(new java.awt.Color(204, 255, 204));
 
-        jLabel2.setText("Before Sleep");
-
-        jLabel3.setText("Before Breakfast");
-
-        jLabel4.setText("Breakfast");
-
-        jLabel5.setText("Lunch");
-
-        beforeBreakFastPanel.setBackground(new java.awt.Color(204, 204, 204));
+        beforeBreakFastPanel.setBackground(new java.awt.Color(255, 255, 255));
+        beforeBreakFastPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 0)));
+        beforeBreakFastPanel.setForeground(new java.awt.Color(0, 51, 153));
 
         javax.swing.GroupLayout beforeBreakFastPanelLayout = new javax.swing.GroupLayout(beforeBreakFastPanel);
         beforeBreakFastPanel.setLayout(beforeBreakFastPanelLayout);
         beforeBreakFastPanelLayout.setHorizontalGroup(
-            beforeBreakFastPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 186, Short.MAX_VALUE)
+                beforeBreakFastPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 101, Short.MAX_VALUE)
         );
         beforeBreakFastPanelLayout.setVerticalGroup(
-            beforeBreakFastPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+                beforeBreakFastPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        breakfastpanel.setBackground(new java.awt.Color(255, 255, 255));
+        breakfastpanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 51)));
+        breakfastpanel.setForeground(new java.awt.Color(0, 51, 153));
 
         javax.swing.GroupLayout breakfastpanelLayout = new javax.swing.GroupLayout(breakfastpanel);
         breakfastpanel.setLayout(breakfastpanelLayout);
         breakfastpanelLayout.setHorizontalGroup(
-            breakfastpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 186, Short.MAX_VALUE)
+                breakfastpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 101, Short.MAX_VALUE)
         );
         breakfastpanelLayout.setVerticalGroup(
-            breakfastpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+                breakfastpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout lunchPanelLayout = new javax.swing.GroupLayout(lunchPanel);
-        lunchPanel.setLayout(lunchPanelLayout);
-        lunchPanelLayout.setHorizontalGroup(
-            lunchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 186, Short.MAX_VALUE)
-        );
-        lunchPanelLayout.setVerticalGroup(
-            lunchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout dinnerPanelLayout = new javax.swing.GroupLayout(dinnerPanel);
-        dinnerPanel.setLayout(dinnerPanelLayout);
-        dinnerPanelLayout.setHorizontalGroup(
-            dinnerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 186, Short.MAX_VALUE)
-        );
-        dinnerPanelLayout.setVerticalGroup(
-            dinnerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jLabel6.setText("dinner");
+        beforeSleepPanel.setBackground(new java.awt.Color(255, 255, 255));
+        beforeSleepPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 51)));
+        beforeSleepPanel.setForeground(new java.awt.Color(0, 51, 153));
 
         javax.swing.GroupLayout beforeSleepPanelLayout = new javax.swing.GroupLayout(beforeSleepPanel);
         beforeSleepPanel.setLayout(beforeSleepPanelLayout);
         beforeSleepPanelLayout.setHorizontalGroup(
-            beforeSleepPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 186, Short.MAX_VALUE)
+                beforeSleepPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 0, Short.MAX_VALUE)
         );
         beforeSleepPanelLayout.setVerticalGroup(
-            beforeSleepPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+                beforeSleepPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        beforebreackfastMeasur.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        beforebreackfastMeasur.setForeground(new java.awt.Color(0, 153, 51));
+        beforebreackfastMeasur.setText("Before Breackfast");
+
+        breackfastMeasur.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        breackfastMeasur.setForeground(new java.awt.Color(0, 153, 51));
+        breackfastMeasur.setText("Breackfast");
+
+        lunchMeasur.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        lunchMeasur.setForeground(new java.awt.Color(0, 153, 51));
+        lunchMeasur.setText("Lunch");
+
+        dinerMeasur.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        dinerMeasur.setForeground(new java.awt.Color(0, 153, 51));
+        dinerMeasur.setText("Diner");
+
+        beforeSleepMeasur.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        beforeSleepMeasur.setForeground(new java.awt.Color(0, 153, 51));
+        beforeSleepMeasur.setText("Before Sleep");
+
+        dinnerPanel.setBackground(new java.awt.Color(255, 255, 255));
+        dinnerPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 51)));
+        dinnerPanel.setForeground(new java.awt.Color(0, 51, 153));
+
+        javax.swing.GroupLayout dinnerPanelLayout = new javax.swing.GroupLayout(dinnerPanel);
+        dinnerPanel.setLayout(dinnerPanelLayout);
+        dinnerPanelLayout.setHorizontalGroup(
+                dinnerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 101, Short.MAX_VALUE)
+        );
+        dinnerPanelLayout.setVerticalGroup(
+                dinnerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        lunchPanel.setBackground(new java.awt.Color(255, 255, 255));
+        lunchPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 51)));
+        lunchPanel.setForeground(new java.awt.Color(0, 51, 153));
+
+        javax.swing.GroupLayout lunchPanelLayout = new javax.swing.GroupLayout(lunchPanel);
+        lunchPanel.setLayout(lunchPanelLayout);
+        lunchPanelLayout.setHorizontalGroup(
+                lunchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 101, Short.MAX_VALUE)
+        );
+        lunchPanelLayout.setVerticalGroup(
+                lunchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout timePanelLayout = new javax.swing.GroupLayout(timePanel);
         timePanel.setLayout(timePanelLayout);
         timePanelLayout.setHorizontalGroup(
-            timePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(timePanelLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(timePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(timePanelLayout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(beforeSleepPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(timePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(timePanelLayout.createSequentialGroup()
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(dinnerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(timePanelLayout.createSequentialGroup()
-                            .addGroup(timePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(timePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(beforeBreakFastPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(breakfastpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lunchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(28, Short.MAX_VALUE))
+                timePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, timePanelLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(timePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(timePanelLayout.createSequentialGroup()
+                                        .addComponent(beforeSleepMeasur, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(44, 44, 44)
+                                        .addComponent(beforeSleepPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(timePanelLayout.createSequentialGroup()
+                                        .addComponent(dinerMeasur, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(dinnerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(timePanelLayout.createSequentialGroup()
+                                        .addComponent(lunchMeasur, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lunchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(timePanelLayout.createSequentialGroup()
+                                        .addComponent(breackfastMeasur)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(breakfastpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(timePanelLayout.createSequentialGroup()
+                                        .addComponent(beforebreackfastMeasur, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(beforeBreakFastPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(64, 64, 64))
         );
         timePanelLayout.setVerticalGroup(
-            timePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, timePanelLayout.createSequentialGroup()
-                .addContainerGap(71, Short.MAX_VALUE)
-                .addGroup(timePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(beforeBreakFastPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addGroup(timePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(breakfastpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(timePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                    .addComponent(lunchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(timePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                    .addComponent(dinnerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(timePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                    .addComponent(beforeSleepPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                timePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(timePanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(timePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(beforeBreakFastPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(beforebreackfastMeasur, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                        .addGap(16, 16, 16)
+                        .addGroup(timePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(breakfastpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(breackfastMeasur, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(timePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lunchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lunchMeasur, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                        .addGap(23, 23, 23)
+                        .addGroup(timePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(dinnerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(dinerMeasur, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(timePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(beforeSleepPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(beforeSleepMeasur, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(timePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(DayLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(77, 77, 77))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(71, 71, 71))))
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(48, 48, 48)
+                                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(147, 147, 147)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(cancelTime, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(saveTime, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(39, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(DayLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(timePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(saveTime)
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cancelTime)
+                        .addGap(134, 134, 134))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(102, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(79, 79, 79))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(timePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(cancelTime, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(saveTime, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel8)
-                        .addGap(18, 18, 18))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(DayLabel)
-                        .addGap(34, 34, 34)
-                        .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DayLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(timePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cancelTime)
-                            .addComponent(saveTime)))
-                    .addComponent(jLabel8))
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 602, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelTimeActionPerformed
-        DailyMeasurement dm =  DailyMeasurement.getInstance();
+        DailyMeasurement dm = DailyMeasurement.getInstance();
         dm.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_cancelTimeActionPerformed
 
     private void saveTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveTimeActionPerformed
 
-        if (userTimeSettings != null) 
-        {
+        if (userTimeSettings != null) {
             if (userChangedAnyValue()) {
-                boolean result = Utils.displayDialogMessage(this, "you have changed some value(s) do you want to save ?");
+                boolean result = Util.displayDialogMessage(this, "you have changed some value(s) do you want to save ?");
                 {
                     if (result) {
                         updateCurrentData();
@@ -324,40 +374,38 @@ public class TimeSetting extends javax.swing.JFrame {
                     }
                 }
             } else {
-               
+
                 showDailyMeasurementForm();
             }
 
         } else {
             constructUserTimeSetting();
             setUserSettingsData();
-                saveNewData();
+            saveNewData();
             showDailyMeasurementForm();
 
         }
 
-
     }//GEN-LAST:event_saveTimeActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel DayLabel;
     private javax.swing.JPanel beforeBreakFastPanel;
+    private javax.swing.JLabel beforeSleepMeasur;
     private javax.swing.JPanel beforeSleepPanel;
+    private javax.swing.JLabel beforebreackfastMeasur;
+    private javax.swing.JLabel breackfastMeasur;
     private javax.swing.JPanel breakfastpanel;
     private javax.swing.JButton cancelTime;
     private com.toedter.calendar.JDateChooser dateChooser;
+    private javax.swing.JLabel dinerMeasur;
     private javax.swing.JPanel dinnerPanel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JLabel lunchMeasur;
     private javax.swing.JPanel lunchPanel;
     private javax.swing.JButton saveTime;
     private javax.swing.JPanel timePanel;
@@ -379,30 +427,30 @@ public class TimeSetting extends javax.swing.JFrame {
         Date date = new Date();
 
         if (userTimeSettings.getBeforeBreakfast() != null) {
-            beforeBreakFastPanel.add(Utils.createDatePicker(userTimeSettings.getBeforeBreakfast()));
+            beforeBreakFastPanel.add(Util.createDatePicker(userTimeSettings.getBeforeBreakfast()));
         } else {
-            breakfastpanel.add(Utils.createDatePicker(date));
+            breakfastpanel.add(Util.createDatePicker(date));
         }
 
         if (userTimeSettings.getBreackfast() != null) {
-            breakfastpanel.add(Utils.createDatePicker(userTimeSettings.getBreackfast()));
+            breakfastpanel.add(Util.createDatePicker(userTimeSettings.getBreackfast()));
         } else {
-            breakfastpanel.add(Utils.createDatePicker(date));
+            breakfastpanel.add(Util.createDatePicker(date));
         }
         if (userTimeSettings.getLunch() != null) {
-            lunchPanel.add(Utils.createDatePicker(userTimeSettings.getLunch()));
+            lunchPanel.add(Util.createDatePicker(userTimeSettings.getLunch()));
         } else {
-            lunchPanel.add(Utils.createDatePicker(date));
+            lunchPanel.add(Util.createDatePicker(date));
         }
         if (userTimeSettings.getDinner() != null) {
-            dinnerPanel.add(Utils.createDatePicker(userTimeSettings.getDinner()));
+            dinnerPanel.add(Util.createDatePicker(userTimeSettings.getDinner()));
         } else {
-            dinnerPanel.add(Utils.createDatePicker(date));
+            dinnerPanel.add(Util.createDatePicker(date));
         }
         if (userTimeSettings.getBeforeSleep() != null) {
-            beforeSleepPanel.add(Utils.createDatePicker(userTimeSettings.getBeforeSleep()));
+            beforeSleepPanel.add(Util.createDatePicker(userTimeSettings.getBeforeSleep()));
         } else {
-            beforeSleepPanel.add(Utils.createDatePicker(date));
+            beforeSleepPanel.add(Util.createDatePicker(date));
         }
         SwingUtilities.updateComponentTreeUI(this);
     }
@@ -411,8 +459,13 @@ public class TimeSetting extends javax.swing.JFrame {
 
         Date date = new Date();
         for (Component c : timePanel.getComponents()) {
+            
             if (c instanceof JPanel) {
-                ((JPanel) c).add(Utils.createDatePicker(date));
+                for(int i = 0 ; i < ((JPanel) c ).getComponents().length ; i++)
+                {
+                    ((JPanel) c).remove(i);
+                }
+                ((JPanel) c).add(Util.createDatePicker(date));
             }
         }
     }
@@ -451,7 +504,7 @@ public class TimeSetting extends javax.swing.JFrame {
                 if (editor instanceof JSpinner.DateEditor) {
                     String dateAsText = ((JSpinner.DateEditor) editor).getTextField().getText();
                     SimpleDateFormat dateFormat = ((JSpinner.DateEditor) editor).getFormat();
-                    return Utils.constructDateOfFormat(dateAsText, dateFormat);
+                    return Util.constructDateOfFormat(dateAsText, dateFormat);
                 }
             }
         }
@@ -460,20 +513,19 @@ public class TimeSetting extends javax.swing.JFrame {
 
     private boolean userChangedAnyValue() {
 
-        if (!Utils.areTimesEqualsEachOthers(userTimeSettings.getBeforeBreakfast(), getBeforeBreakFastDate())) {
+        if (!Util.areTimesEqualsEachOthers(userTimeSettings.getBeforeBreakfast(), getBeforeBreakFastDate())) {
             return true;
         }
-        if (!Utils.areTimesEqualsEachOthers(userTimeSettings.getBreackfast(), getBreakfast())) {
+        if (!Util.areTimesEqualsEachOthers(userTimeSettings.getBreackfast(), getBreakfast())) {
             return true;
         }
-        if (!Utils.areTimesEqualsEachOthers(userTimeSettings.getLunch(), getLunch())) {
+        if (!Util.areTimesEqualsEachOthers(userTimeSettings.getLunch(), getLunch())) {
             return true;
         }
-        if (!Utils.areTimesEqualsEachOthers(userTimeSettings.getDinner(), getDinner())) {
+        if (!Util.areTimesEqualsEachOthers(userTimeSettings.getDinner(), getDinner())) {
             return true;
         }
-        if(!Utils.areTimesEqualsEachOthers(userTimeSettings.getBeforeSleep(), getBeforeSleep()))
-        {
+        if (!Util.areTimesEqualsEachOthers(userTimeSettings.getBeforeSleep(), getBeforeSleep())) {
             return true;
         }
         return false;
@@ -482,35 +534,33 @@ public class TimeSetting extends javax.swing.JFrame {
 
     private void showDailyMeasurementForm() {
 
-        Utils.hideAndShow(this,  DailyMeasurement.getInstance());
+        Util.hideAndShow(this, DailyMeasurement.getInstance());
     }
 
     private void constructUserTimeSetting() {
         userTimeSettings = new ObjectFactory().createUsersUserInfoUserTimeSetting();
-        
 
     }
 
     private void saveNewData() {
-        
-        Utils.currentLoginUser.getUserTimeSetting().add(userTimeSettings);
+
+        Util.currentLoginUser.getUserTimeSetting().add(userTimeSettings);
         userBusiness.saveUsersBackIntoFile();
-    
+
     }
 
     private void updateCurrentData() {
         setUserSettingsData();
-                userBusiness.saveUsersBackIntoFile();
+        userBusiness.saveUsersBackIntoFile();
 
     }
-    
-    public void setUserSettingsData()
-    {
-        userTimeSettings.setUserTimeSettingDate(Utils.dateToXMLGregorianCalendar(new Date()));
-        userTimeSettings.setBeforeBreakfast(Utils.dateToXMLGregorianCalendar(getBeforeBreakFastDate()));
-        userTimeSettings.setBreackfast(Utils.dateToXMLGregorianCalendar(getBreakfast()));
-        userTimeSettings.setLunch(Utils.dateToXMLGregorianCalendar(getLunch()));
-        userTimeSettings.setDinner(Utils.dateToXMLGregorianCalendar(getDinner()));
-        userTimeSettings.setBeforeSleep(Utils.dateToXMLGregorianCalendar(getBeforeSleep()));
+
+    public void setUserSettingsData() {
+        userTimeSettings.setUserTimeSettingDate(Util.dateToXMLGregorianCalendar(new Date()));
+        userTimeSettings.setBeforeBreakfast(Util.dateToXMLGregorianCalendar(getBeforeBreakFastDate()));
+        userTimeSettings.setBreackfast(Util.dateToXMLGregorianCalendar(getBreakfast()));
+        userTimeSettings.setLunch(Util.dateToXMLGregorianCalendar(getLunch()));
+        userTimeSettings.setDinner(Util.dateToXMLGregorianCalendar(getDinner()));
+        userTimeSettings.setBeforeSleep(Util.dateToXMLGregorianCalendar(getBeforeSleep()));
     }
 }

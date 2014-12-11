@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.swing.JOptionPane;
 import javax.xml.datatype.XMLGregorianCalendar;
-import util.Utils;
+import utils.Util;
 import xml.Users;
 
 /**
@@ -38,9 +38,9 @@ public class AlertThread extends Thread {
                     for (String key : datesToNotify.keySet()) {
                         XMLGregorianCalendar xmlGregorianCalendar = datesToNotify.get(key);
                         {
-                            if (Utils.areTimesEqualsEachOthersBySecond(xmlGregorianCalendar, new Date())) {
+                            if (Util.areTimesEqualsEachOthersBySecond(xmlGregorianCalendar, new Date())) {
                                 NotifyUser(key);
-                                Utils.removeFromMap(datesToNotify , key);
+                                Util.removeFromMap(datesToNotify , key);
                             }
 
                         }
@@ -58,19 +58,19 @@ public class AlertThread extends Thread {
 
         if (timeSetting.getBeforeBreakfast() != null) {
 
-            datesToNotify.put(Utils.beforeBreakfast, timeSetting.getBeforeBreakfast());
+            datesToNotify.put(Util.beforeBreakfast, timeSetting.getBeforeBreakfast());
         }
         if (timeSetting.getBreackfast() != null) {
-            datesToNotify.put(Utils.breakFast, timeSetting.getBreackfast());
+            datesToNotify.put(Util.breakfast, timeSetting.getBreackfast());
         }
         if (timeSetting.getLunch() != null) {
-            datesToNotify.put(Utils.lunch, timeSetting.getLunch());
+            datesToNotify.put(Util.lunch, timeSetting.getLunch());
         }
         if (timeSetting.getDinner() != null) {
-            datesToNotify.put(Utils.dinnder, timeSetting.getDinner());
+            datesToNotify.put(Util.dinner, timeSetting.getDinner());
         }
         if (timeSetting.getBeforeSleep() != null) {
-            datesToNotify.put(Utils.beforeSleep, timeSetting.getBeforeSleep());
+            datesToNotify.put(Util.beforeSleep, timeSetting.getBeforeSleep());
         }
 
     }

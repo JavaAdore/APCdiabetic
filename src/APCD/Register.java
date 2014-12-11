@@ -6,8 +6,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.xml.bind.JAXBException;
-import util.CustomException;
-import util.Utils;
+import utils.CustomException;
+import utils.Util;
 import xml.Users;
 
 public class Register extends javax.swing.JFrame {
@@ -33,7 +33,7 @@ public class Register extends javax.swing.JFrame {
     }
 
     private void initForm() {
-        Utils.initializeForm(this);
+        Util.initializeForm(this);
         maleRadioButton.setSelected(true);
         Type1Daibetic.setSelected(true);
     }
@@ -326,34 +326,34 @@ public class Register extends javax.swing.JFrame {
         try {
             validateNameAndEmail();
 
-            Utils.currentLoginUser = userBusiness.getUserByEmail(email.getText());
-            if (Utils.currentLoginUser != null) {
-                boolean result = Utils.displayDialogMessage(this, "This Email Is Already registered before, Would you like to Login ");
+            Util.currentLoginUser = userBusiness.getUserByEmail(email.getText());
+            if (Util.currentLoginUser != null) {
+                boolean result = Util.displayDialogMessage(this, "This Email Is Already registered before, Would you like to Login ");
                 if (result) {
 
-                    Utils.hideAndShow(this,  DailyMeasurement.getInstance());
+                    Util.hideAndShow(this,  DailyMeasurement.getInstance());
                 }
 
             } else {
-                Utils.currentLoginUser = new Users.UserInfo();
-                Utils.currentLoginUser.setName(nameField.getText());
-                Utils.currentLoginUser.setEmail(email.getText());
+                Util.currentLoginUser = new Users.UserInfo();
+                Util.currentLoginUser.setName(nameField.getText());
+                Util.currentLoginUser.setEmail(email.getText());
                 //Utils.hideAndShow(this, new DailyMeasurement());
                 resetForm();
-                Utils.hideAndShow(this,  TimeSetting.getInstance());
+                Util.hideAndShow(this,  TimeSetting.getInstance());
                 if (maleRadioButton.isSelected()) {
-                    Utils.currentLoginUser.setGender(Utils.MALE);
+                    Util.currentLoginUser.setGender(Util.MALE);
                 } else {
-                    Utils.currentLoginUser.setGender(Utils.FEMALE);
+                    Util.currentLoginUser.setGender(Util.FEMALE);
                 }
 
                 // setting the type
                 if (Type1Daibetic.isSelected()) {
-                    Utils.currentLoginUser.setTypeOfDiabetic(Utils.TYPE1);
+                    Util.currentLoginUser.setTypeOfDiabetic(Util.TYPE1);
                 } else if (Type2Daibetic.isSelected()) {
-                    Utils.currentLoginUser.setTypeOfDiabetic(Utils.TYPE2);
+                    Util.currentLoginUser.setTypeOfDiabetic(Util.TYPE2);
                 } else if (gestationalDiabetes.isSelected()) {
-                    Utils.currentLoginUser.setTypeOfDiabetic(Utils.TYPE2);
+                    Util.currentLoginUser.setTypeOfDiabetic(Util.TYPE2);
                 }
 
                 userBusiness.saveUsersBackIntoFile();
@@ -361,7 +361,7 @@ public class Register extends javax.swing.JFrame {
 
         } catch (Exception ex) {
             ex.printStackTrace();
-            Utils.displayMessage(this, ex.getMessage());
+            Util.displayMessage(this, ex.getMessage());
         }
 
         // TODO add your handling code here:
@@ -455,10 +455,10 @@ public class Register extends javax.swing.JFrame {
     private void startApplication() {
         try {
             
-            xmlFile = new File( new File(Utils.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParent() + File.separator + "Databaselast.xml");
+            xmlFile = new File( new File(Util.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParent() + File.separator + "Databaselast.xml");
             xmlFile = new File(getClass().getResource("/"+databaseName).getPath());
             try {
-                Utils.XmlUsers = Utils.unmarchalXmlToUser(xmlFile);
+                Util.XmlUsers = Util.unmarchalXmlToUser(xmlFile);
             } catch (JAXBException exception) {
                 exception.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Unable to parse XML file please contact Programmer");
@@ -505,10 +505,10 @@ public class Register extends javax.swing.JFrame {
     
     private void validateNameAndEmail() throws CustomException {
 
-        if (Utils.isAString(nameField.getText()) == false) {
+        if (Util.isAString(nameField.getText()) == false) {
             throw new CustomException("Please Enter your name");
         }
-        if (Utils.isEmail(email.getText()) == false) {
+        if (Util.isEmail(email.getText()) == false) {
             throw new CustomException("Please Enter your Email");
         }
     }

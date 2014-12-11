@@ -10,7 +10,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
-import util.Utils;
+import utils.Util;
 import xml.Users;
 
 /*
@@ -38,12 +38,15 @@ public class TableOfMeasurements extends javax.swing.JFrame {
             instance = new TableOfMeasurements();
         }
         
-        return instance;
+       
+         instance.loadData() ;
+         instance.initializeDataTable();
+         return instance;
     
     }
 
     private void initForm() {
-        Utils.initializeForm(this);
+        Util.initializeForm(this);
         loadData();
         initializeDataTable();
     }
@@ -193,7 +196,7 @@ public class TableOfMeasurements extends javax.swing.JFrame {
 
     private void sendMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendMailActionPerformed
         // TODO add your handling code here:
-        Utils.fireEmail(Utils.currentLoginUser.getEmail(), userBusiness.prepareUserDetailsString());
+        Util.fireEmail(Util.currentLoginUser.getEmail(), userBusiness.prepareUserDetailsString());
         
     }//GEN-LAST:event_sendMailActionPerformed
 
@@ -216,19 +219,19 @@ public class TableOfMeasurements extends javax.swing.JFrame {
 
         extractLastSevenDailyMeasurements = userBusiness.extractLastSevenDailyMeasurements();
         
-        nameLabel.setText( (Utils.currentLoginUser.getName()!=null) ?Utils.currentLoginUser.getName() : ""  );
+        nameLabel.setText( (Util.currentLoginUser.getName()!=null) ?Util.currentLoginUser.getName() : ""  );
 
     }
 
     private void initializeDataTable() {
-        List<String> columns = Arrays.asList(Utils.times);
+        List<String> columns = Arrays.asList(Util.times);
         List<String[]> values = new ArrayList<String[]>();
 
         for (int day : extractLastSevenDailyMeasurements.keySet()) {
             Users.UserInfo.DailyMeasurement data = extractLastSevenDailyMeasurements.get(day);
             List<String> rowData = new ArrayList();
             
-            rowData.add(Utils.weekDays[day]);
+            rowData.add(Util.weekDays[day]);
             if(data == null)
             {   
                 data = new  Users.UserInfo.DailyMeasurement();

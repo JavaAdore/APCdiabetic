@@ -1,37 +1,23 @@
-package util;
+package utils;
 
-import java.awt.Component;
 import java.awt.Container;
 import java.awt.Toolkit;
 import java.io.File;
-import java.net.URISyntaxException;
+import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.*;
+import java.util.logging.*;
 import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.mail.*;
+import javax.mail.internet.*;
+import javax.swing.*;
 import javax.swing.JOptionPane;
-import javax.swing.JRootPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.bind.*;
+import javax.xml.datatype.*;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import xml.Users;
@@ -45,7 +31,7 @@ import xml.Users;
  *
  * @author orcl
  */
-public class Utils {
+public class Util {
 
     public final static int BUTTON_WIDTH = 100;
     public final static int BUTTON_HEIGHT = 30;
@@ -55,12 +41,12 @@ public class Utils {
     public final static String day = "Day";
 
     public final static String beforeBreakfast = "beforeBreakfast";
-    public final static String breakFast = "breakFast";
+    public final static String breakfast = "breakFast";
     public final static String lunch = "lunch";
-    public final static String dinnder = "dinner";
+    public final static String dinner = "dinner";
     public final static String beforeSleep = "beforeSleep";
     public final static String suddenDrop = "suddenDrop";
-    public final static String[] times = {day, beforeBreakfast, breakFast, lunch, dinnder, beforeSleep, suddenDrop};
+    public final static String[] times = {day, beforeBreakfast, breakfast, lunch, dinner, beforeSleep, suddenDrop};
     public static Users XmlUsers;
     public static Users.UserInfo currentLoginUser;
     public static String MALE = "MALE";
@@ -83,6 +69,10 @@ public class Utils {
     public static final int Friday = 6;
 
     public static final String[] weekDays = new String[]{"Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
+    public static String OVER_AVERAGE = "Over than Average";
+    public static String NORMAL = "Normal";
+    public static String DOWN_AVERAGE = "Lower Than Average";
+    public static String NO_CHANGES_HAPPEND = "No Changes Happend";
 
     public static void initializeForm(JFrame frame) {
         setFrameIcon(frame);
@@ -214,7 +204,7 @@ public class Utils {
             Date date = format.parse(dateAsText);
             return date;
         } catch (ParseException ex) {
-            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
 
@@ -227,7 +217,7 @@ public class Utils {
             XMLGregorianCalendar result = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
             return result;
         } catch (DatatypeConfigurationException ex) {
-            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
 
@@ -251,11 +241,10 @@ public class Utils {
                 th = th.getClass().newInstance();
                 th.start();
             } catch (InstantiationException ex) {
-                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {
-                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
     }
 
@@ -303,7 +292,7 @@ public class Utils {
         date1 = trimTimeFromCalendar(date1);
         date2 = trimTimeFromCalendar(date2);
         dateToCheck = trimTimeFromCalendar(dateToCheck);
-        return (dateToCheck.before(date1) && dateToCheck.after(date2));
+        return (dateToCheck.after(date1) && dateToCheck.before(date2));
 
     }
 
@@ -433,8 +422,90 @@ public class Utils {
         }.start();
 
     }
-    
-    private static void setFrameIcon(JFrame frame){
+
+    private static void setFrameIcon(JFrame frame) {
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage(frame.getClass().getClassLoader().getResource("images/apcLogo.png")));
+    }
+
+    public static < K, V> Map<K, V> ListToMap(List list, String objectFieldToBeKey, String objectFieldToBeValue) {
+        Map<K, V> result = new HashMap();
+        if (Util.isNotEmpty(list)) {
+            Class<? extends Object> listElementsClass = list.get(0).getClass();
+            Field declaredFieldtoBeKey = null;
+            Field declaredFieldtoBeValue = null;
+            try {
+                declaredFieldtoBeKey = listElementsClass.getDeclaredField(objectFieldToBeKey);
+                declaredFieldtoBeValue = listElementsClass.getDeclaredField(objectFieldToBeValue);
+                if (declaredFieldtoBeKey != null && declaredFieldtoBeValue != null) {
+                    declaredFieldtoBeKey.setAccessible(true);
+                    declaredFieldtoBeValue.setAccessible(true);
+                    for (Object obj : list) {
+                        Object valueOfKeyField = declaredFieldtoBeKey.get(obj);
+                        Object valueOfFieldValue = declaredFieldtoBeValue.get(obj);
+                        if (valueOfKeyField != null && valueOfFieldValue != null) {
+                            result.put((K) valueOfKeyField, (V) valueOfFieldValue);
+                        }
+                    }
+                }
+
+            } catch (Exception ex) {
+                Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                return result;
+            }
+        }
+        return result;
+
+    }
+
+    public static <K, V> V extractFromMap(K key, Map<K, V> map) {
+        if (key != null && map != null) {
+
+            return map.get(key);
+
+        }
+        return null;
+
+    }
+
+    public static boolean areStringsEqualEachOther(String str1, String str2) {
+        if (str1 != null && str2 != null) { 
+            try
+            {
+                double firstNumber = Double.parseDouble(str1);
+                double secondNumber = Double.parseDouble(str2);
+                return firstNumber== secondNumber;
+            }catch(Exception ex)
+            {
+                // Do nothing , in case of the two strings are numbers deal with them as a number 
+                //    if not go a head and continue;
+            }
+            return str1.trim().equalsIgnoreCase(str2.trim());
+
+        }
+        return false;
+    }
+
+    public static String camelCasingStylingToNormal(String camelStyledString) {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (camelStyledString != null) {
+            char[] chars = camelStyledString.toCharArray();
+            for (int i = 0; i < camelStyledString.toCharArray().length; i++) {
+                char currentChar = chars[i];
+                if (i == 0) {
+                    stringBuilder.append(String.valueOf(currentChar).toUpperCase());
+                    continue;
+                }
+                if (((int) currentChar) >= 65 && ((int) currentChar) <= 90) {
+                    stringBuilder.insert(i, " ");
+                    stringBuilder.append(String.valueOf(currentChar).toUpperCase());
+                }else
+                {
+                                    stringBuilder.append(String.valueOf(currentChar).toLowerCase());
+
+                }
+            }
+        }
+        return stringBuilder.toString();
     }
 }
