@@ -485,9 +485,7 @@ public class TimeSetting extends javax.swing.JFrame {
         for (Component c : timePanel.getComponents()) {
 
             if (c instanceof JPanel) {
-                for (int i = 0; i < ((JPanel) c).getComponents().length; i++) {
-                    ((JPanel) c).remove(i);
-                }
+                
                 ((JPanel) c).add(Util.createDatePicker(date));
             }
         }
