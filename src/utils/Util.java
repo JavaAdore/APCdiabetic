@@ -287,13 +287,13 @@ public class Util {
         }
     }
 
-    public static boolean isDateBetween(XMLGregorianCalendar measurementDate, Date date1, Date date2) {
+    public static boolean isDateBetween(XMLGregorianCalendar measurementDate, Date minDate, Date maxDate) {
 
         Date dateToCheck = measurementDate.toGregorianCalendar().getTime();
-        date1 = trimTimeFromCalendar(date1);
-        date2 = trimTimeFromCalendar(date2);
+        minDate = trimTimeFromCalendar(minDate);
+        maxDate = trimTimeFromCalendar(maxDate);
         dateToCheck = trimTimeFromCalendar(dateToCheck);
-        return (dateToCheck.after(date1) && dateToCheck.before(date2));
+        return (dateToCheck.after(minDate) && dateToCheck.before(maxDate));
 
     }
 

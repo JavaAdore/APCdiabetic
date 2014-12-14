@@ -114,9 +114,9 @@ public class UserBusiness {
 
                 if (dailyMeasurement.getMeasurementDate() != null) {
 
-               //     if (Util.isDateBetween(dailyMeasurement.getMeasurementDate(), new Date(), c.getTime())) {
+                    if (Util.isDateBetween(dailyMeasurement.getMeasurementDate(),  c.getTime() , new Date())) {
                         result.add(dailyMeasurement);
-                //    }
+                  }
 
                 }
 
