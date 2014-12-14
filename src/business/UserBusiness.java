@@ -173,7 +173,7 @@ public class UserBusiness {
                 System.out.println(mes.getTimeOfMeasurement() + " " + mes.getValue());
                 if(!mes.getTimeOfMeasurement().equals("Day")){
                     stringBuilder.append("\t" + mes.getTimeOfMeasurement() + "\t" 
-                            + Util.getNotNullValue(String.valueOf(mes.getMeasurementValue()))+"\n\n");
+                            + Util.getNotNullValue(mes.getMeasurementValue())+"\n\n");
                 }
             }
             stringBuilder.append("\n\n");

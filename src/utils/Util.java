@@ -332,6 +332,10 @@ public class Util {
     public static String getNotNullValue(String str) {
         return (str != null) ? str : "";
     }
+    
+    public static String getNotNullValue(Double value) {
+        return (value != null ) ? String.valueOf(value) : "";
+    }
 
     public static String getFullDate(XMLGregorianCalendar measurementDate) {
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
