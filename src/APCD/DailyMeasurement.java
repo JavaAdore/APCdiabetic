@@ -482,8 +482,7 @@ public class DailyMeasurement extends javax.swing.JFrame {
             }
         }
 
-        calculateButton.setEnabled(Util.currentLoginUser.getDailyMeasurement() != null && Util.currentLoginUser.getDailyMeasurement().size() > 0);
-        TableOfMeasurementsButton.setEnabled(Util.currentLoginUser.getDailyMeasurement() != null && Util.currentLoginUser.getDailyMeasurement().size() > 0);
+        
 
     }
 
