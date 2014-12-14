@@ -80,13 +80,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="beforebreackfastMeasur" min="-2" pref="205" max="-2" attributes="0"/>
-                              <Component id="breackfastMeasur" min="-2" max="-2" attributes="0"/>
-                              <Component id="lunchMeasur" min="-2" pref="210" max="-2" attributes="0"/>
-                              <Component id="dinerMeasur" min="-2" pref="205" max="-2" attributes="0"/>
-                              <Component id="beforeSleepMeasur" min="-2" pref="210" max="-2" attributes="0"/>
-                              <Component id="jLabel9" min="-2" pref="210" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
@@ -95,8 +89,14 @@
                                       <Component id="ExitMeasurement" alignment="1" min="-2" pref="115" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+                              <Component id="beforebreackfastMeasur" pref="236" max="32767" attributes="0"/>
+                              <Component id="breackfastMeasur" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lunchMeasur" alignment="0" max="32767" attributes="0"/>
+                              <Component id="dinerMeasur" alignment="0" max="32767" attributes="0"/>
+                              <Component id="beforeSleepMeasur" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabel9" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="measurePanel" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jSeparator1" min="-2" pref="320" max="-2" attributes="0"/>
@@ -123,26 +123,30 @@
                   <EmptySpace min="15" pref="15" max="-2" attributes="0"/>
                   <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="measurePanel" min="-2" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
                           <Component id="beforebreackfastMeasur" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
                           <Component id="breackfastMeasur" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                           <Component id="lunchMeasur" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                           <Component id="dinerMeasur" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                           <Component id="beforeSleepMeasur" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                           <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="46" pref="46" max="-2" attributes="0"/>
-                          <Component id="SaveMeasurement" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="measurePanel" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="270" pref="270" max="-2" attributes="0"/>
-                          <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                                  <Component id="SaveMeasurement" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                  <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -258,7 +262,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="99" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Sudden drop -------------&gt;"/>
+            <Property name="text" type="java.lang.String" value="Sudden drop "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="beforebreackfastMeasur">
@@ -269,7 +273,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="99" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Before Breackfast -----&gt;"/>
+            <Property name="text" type="java.lang.String" value="Before Breackfast "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="breackfastMeasur">
@@ -280,7 +284,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="99" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Breackfast ----------------&gt;"/>
+            <Property name="text" type="java.lang.String" value="Breackfast"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lunchMeasur">
@@ -291,7 +295,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="99" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Lunch ----------------------&gt;"/>
+            <Property name="text" type="java.lang.String" value="Lunch "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="dinerMeasur">
@@ -302,7 +306,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="99" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Diner  ----------------------&gt;"/>
+            <Property name="text" type="java.lang.String" value="Diner  "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="beforeSleepMeasur">
@@ -313,7 +317,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="99" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Before Sleep ------------&gt;"/>
+            <Property name="text" type="java.lang.String" value="Before Sleep "/>
           </Properties>
         </Component>
         <Container class="javax.swing.JPanel" name="measurePanel">

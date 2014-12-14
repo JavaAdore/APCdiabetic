@@ -168,27 +168,27 @@ public class DailyMeasurement extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 153, 51));
-        jLabel9.setText("Sudden drop ------------->");
+        jLabel9.setText("Sudden drop ");
 
         beforebreackfastMeasur.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         beforebreackfastMeasur.setForeground(new java.awt.Color(0, 153, 51));
-        beforebreackfastMeasur.setText("Before Breackfast ----->");
+        beforebreackfastMeasur.setText("Before Breackfast ");
 
         breackfastMeasur.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         breackfastMeasur.setForeground(new java.awt.Color(0, 153, 51));
-        breackfastMeasur.setText("Breackfast ---------------->");
+        breackfastMeasur.setText("Breackfast");
 
         lunchMeasur.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         lunchMeasur.setForeground(new java.awt.Color(0, 153, 51));
-        lunchMeasur.setText("Lunch ---------------------->");
+        lunchMeasur.setText("Lunch ");
 
         dinerMeasur.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         dinerMeasur.setForeground(new java.awt.Color(0, 153, 51));
-        dinerMeasur.setText("Diner  ---------------------->");
+        dinerMeasur.setText("Diner  ");
 
         beforeSleepMeasur.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         beforeSleepMeasur.setForeground(new java.awt.Color(0, 153, 51));
-        beforeSleepMeasur.setText("Before Sleep ------------>");
+        beforeSleepMeasur.setText("Before Sleep ");
 
         measurePanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -279,20 +279,20 @@ public class DailyMeasurement extends javax.swing.JFrame {
                 .addGroup(measurePanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(measurePanelMainLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addGroup(measurePanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(beforebreackfastMeasur, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(breackfastMeasur)
-                            .addComponent(lunchMeasur, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dinerMeasur, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(beforeSleepMeasur, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(measurePanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(measurePanelMainLayout.createSequentialGroup()
                                 .addGap(90, 90, 90)
                                 .addGroup(measurePanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel10)
                                     .addComponent(SaveMeasurement, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ExitMeasurement, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(30, 30, 30)
+                                    .addComponent(ExitMeasurement, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(beforebreackfastMeasur, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                            .addComponent(breackfastMeasur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lunchMeasur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dinerMeasur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(beforeSleepMeasur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(measurePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
@@ -312,6 +312,7 @@ public class DailyMeasurement extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(measurePanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(measurePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(measurePanelMainLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(beforebreackfastMeasur)
@@ -325,12 +326,13 @@ public class DailyMeasurement extends javax.swing.JFrame {
                         .addComponent(beforeSleepMeasur)
                         .addGap(16, 16, 16)
                         .addComponent(jLabel9)
-                        .addGap(46, 46, 46)
-                        .addComponent(SaveMeasurement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(measurePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(measurePanelMainLayout.createSequentialGroup()
-                        .addGap(270, 270, 270)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(measurePanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(measurePanelMainLayout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(SaveMeasurement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(measurePanelMainLayout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
