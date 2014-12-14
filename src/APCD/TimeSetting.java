@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SwingUtilities;
 import javax.xml.datatype.XMLGregorianCalendar;
-import utils.*;
+import utils.Util;
 import xml.ObjectFactory;
 import xml.Users;
 
@@ -28,7 +28,7 @@ import xml.Users;
  */
 public class TimeSetting extends javax.swing.JFrame {
 
-    /**
+       /**
      * Creates new form TimeSetting
      */
     UserBusiness userBusiness = new UserBusiness();
@@ -59,6 +59,7 @@ public class TimeSetting extends javax.swing.JFrame {
         dinnerPanel.setLayout(layout);
         beforeSleepPanel.setLayout(layout);
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -332,9 +333,9 @@ public class TimeSetting extends javax.swing.JFrame {
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(saveTime)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
                 .addGap(1, 1, 1)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cancelTime)
                 .addGap(134, 134, 134))
         );
@@ -354,14 +355,15 @@ public class TimeSetting extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelTimeActionPerformed
-        DailyMeasurement dm = DailyMeasurement.getInstance();
+        DailyMeasurement dm =  DailyMeasurement.getInstance();
         dm.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_cancelTimeActionPerformed
 
     private void saveTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveTimeActionPerformed
 
-        if (userTimeSettings != null) {
+        if (userTimeSettings != null)
+        {
             if (userChangedAnyValue()) {
                 boolean result = Util.displayDialogMessage(this, "you have changed some value(s) do you want to save ?");
                 {
@@ -386,6 +388,7 @@ public class TimeSetting extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_saveTimeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel DayLabel;
@@ -422,7 +425,7 @@ public class TimeSetting extends javax.swing.JFrame {
         setDateLabelWithCurrentDate();
     }
 
-    private void setFieldsValues(Users.UserInfo.UserTimeSetting userTimeSettings) {
+     private void setFieldsValues(Users.UserInfo.UserTimeSetting userTimeSettings) {
         Date date = new Date();
         JSpinner tempSpinner = null;
         if (userTimeSettings.getBeforeBreakfast() != null) {
@@ -478,7 +481,6 @@ public class TimeSetting extends javax.swing.JFrame {
         }
         SwingUtilities.updateComponentTreeUI(this);
     }
-
     private void initializeTimePanelWithCurrentTime() {
 
         Date date = new Date();
@@ -549,7 +551,8 @@ public class TimeSetting extends javax.swing.JFrame {
         if (!Util.areTimesEqualsEachOthers(userTimeSettings.getDinner(), getDinner())) {
             return true;
         }
-        if (!Util.areTimesEqualsEachOthers(userTimeSettings.getBeforeSleep(), getBeforeSleep())) {
+        if(!Util.areTimesEqualsEachOthers(userTimeSettings.getBeforeSleep(), getBeforeSleep()))
+        {
             return true;
         }
         return false;
@@ -558,28 +561,30 @@ public class TimeSetting extends javax.swing.JFrame {
 
     private void showDailyMeasurementForm() {
 
-        Util.hideAndShow(this, DailyMeasurement.getInstance());
+        Util.hideAndShow(this,  DailyMeasurement.getInstance());
     }
 
     private void constructUserTimeSetting() {
         userTimeSettings = new ObjectFactory().createUsersUserInfoUserTimeSetting();
+        
 
     }
 
     private void saveNewData() {
-
+        
         Util.currentLoginUser.getUserTimeSetting().add(userTimeSettings);
         userBusiness.saveUsersBackIntoFile();
-
+    
     }
 
     private void updateCurrentData() {
         setUserSettingsData();
-        userBusiness.saveUsersBackIntoFile();
+                userBusiness.saveUsersBackIntoFile();
 
     }
-
-    public void setUserSettingsData() {
+    
+    public void setUserSettingsData()
+    {
         userTimeSettings.setUserTimeSettingDate(Util.dateToXMLGregorianCalendar(new Date()));
         userTimeSettings.setBeforeBreakfast(Util.dateToXMLGregorianCalendar(getBeforeBreakFastDate()));
         userTimeSettings.setBreackfast(Util.dateToXMLGregorianCalendar(getBreakfast()));
