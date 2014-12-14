@@ -148,17 +148,34 @@ public class UserBusiness {
     public String prepareUserDetailsString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(String.format("MR %s \n", Util.getNotNullValue(Util.currentLoginUser.getName())));
-        stringBuilder.append(prepareColumns());
+        //stringBuilder.append(prepareColumns());
+        /*
         for (int day : extractLastSevenDailyMeasurements().keySet()) {
             Users.UserInfo.DailyMeasurement data = extractLastSevenDailyMeasurements().get(day);
-            stringBuilder.append(String.format("Date : %s \n ", Util.getFullDate(data.getMeasurementDate())));
-            try {
-                stringBuilder.append(String.format("                  %s\t", Util.getDayName(data.getMeasurementDate().toGregorianCalendar().getTime())));
-            } catch (Exception ex) {
+            stringBuilder.append(String.format("Date : %s \n ", Utils.getFullDate(data.getMeasurementDate())));
+            try
+            {
+            stringBuilder.append(String.format("%s\t", Utils.getDayName(data.getMeasurementDate().toGregorianCalendar().getTime())));
+            }catch(Exception ex)
+            {
                 stringBuilder.append("                   ");
             }
-            stringBuilder.append(data);
+                        stringBuilder.append(data);
 
+        }*/
+        for(Map.Entry<Integer, Users.UserInfo.DailyMeasurement> ms :extractLastSevenDailyMeasurements().entrySet()){
+            System.out.println("Key = " + ms.getKey());
+            Users.UserInfo.DailyMeasurement data = extractLastSevenDailyMeasurements().get(ms.getKey());
+            String dayName = Util.weekDays[ms.getKey()];
+            stringBuilder.append("\n" +dayName +"\t\t"+ data.getMeasurementDate().toGregorianCalendar().getTime().toString()+"\n\n");
+            
+            for(Users.UserInfo.DailyMeasurement.Measurement mes : ms.getValue().getMeasurement()){
+                System.out.println(mes.getTimeOfMeasurement() + " " + mes.getValue());
+                if(!mes.getTimeOfMeasurement().equals("Day")){
+                    stringBuilder.append("\t" + mes.getTimeOfMeasurement() + "\t" + mes.getMeasurementValue()+"\n\n");
+                }
+            }
+            stringBuilder.append("\n\n");
         }
         return stringBuilder.toString();
 
