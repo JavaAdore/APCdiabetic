@@ -114,9 +114,9 @@ public class UserBusiness {
 
                 if (dailyMeasurement.getMeasurementDate() != null) {
 
-                    if (Util.isDateBetween(dailyMeasurement.getMeasurementDate(), new Date(), c.getTime())) {
+               //     if (Util.isDateBetween(dailyMeasurement.getMeasurementDate(), new Date(), c.getTime())) {
                         result.add(dailyMeasurement);
-                    }
+                //    }
 
                 }
 
@@ -134,7 +134,7 @@ public class UserBusiness {
 
         for (Users.UserInfo.DailyMeasurement dailyMeasurement : dailyMeasurementList) {
             int dayNumber = Util.extractDayNumberFromDate(dailyMeasurement.getMeasurementDate());
-            Util.replaceInMap(dayNumber - 1, dailyMeasurement, result);
+            Util.replaceInMap(dayNumber , dailyMeasurement, result);
 
         }
         return result;
