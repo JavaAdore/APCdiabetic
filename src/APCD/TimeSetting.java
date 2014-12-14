@@ -483,7 +483,7 @@ public class TimeSetting extends javax.swing.JFrame {
 
         Date date = new Date();
         for (Component c : timePanel.getComponents()) {
-
+ 
             if (c instanceof JPanel) {
                 
                 ((JPanel) c).add(Util.createDatePicker(date));
