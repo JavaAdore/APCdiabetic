@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<userInfo>
+
+    <name id="1"> nada</name>
+    <gender>Femael</gender>
+    <typeOfDiabetic>type1</typeOfDiabetic>
+    <email>nada.asghar@hotmail.com</email>
+    
+/* ---------- start of time sitting ---------- */       
+    <TimeSetting>
+    
+        <day> </day>
+    	<date> </date>
+        <breackfast> </breackfast>
+    	<lunch> </lunch>
+    	<diner> </diner>
+    	<BeforeSleep> </BeforeSleep>
+    	
+    </TimeSetting>
+    
+    // time sittings for alarm
+    
+/* ---------- end of time sitting ---------- */     
+    <DailyMeasurement> 
+    		<day> </day>
+    		<date> </date>
+    		
+    		
+    			<beforeBreackfastTime> </beforeBreackfastTime>
+    			<time1> </time1> 
+    		
+    			<breackfastTime> </breackfastTime>
+    			<time2> </time2>
+    			 
+    			<lunchTime> </lunchTime>
+    			<time3> </time3>
+    			 
+    			<dinerTime> </dinerTime>
+    			<time4> </time4>
+    			 
+    			<BeforeSleepTime> </BeforeSleepTime>
+    			<time5> </time5>
+    			
+    			<suddenDrop> </suddenDrop>
+    			<time6> </time6>  
+     </DailyMeasurement>
+
+
+
+    
+</userInfo>
