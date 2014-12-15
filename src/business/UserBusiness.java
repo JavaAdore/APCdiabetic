@@ -128,14 +128,15 @@ public class UserBusiness {
     public Map<Integer, UserInfo.DailyMeasurement> dailyMeasurementListToMap(List<Users.UserInfo.DailyMeasurement> dailyMeasurementList) {
         Map<Integer, UserInfo.DailyMeasurement> result = new TreeMap();
 
-        for (int i = 0; i < 7; i++) {
-            result.put(i, UserInfo.DailyMeasurement.constructDefaultDailyMeasurement(i));
-        }
+        if(dailyMeasurementList!=null){
+            for (int i = 0; i < 7; i++) {
+                result.put(i, UserInfo.DailyMeasurement.constructDefaultDailyMeasurement(i));
+            }
 
-        for (Users.UserInfo.DailyMeasurement dailyMeasurement : dailyMeasurementList) {
-            int dayNumber = Util.extractDayNumberFromDate(dailyMeasurement.getMeasurementDate());
-            Util.replaceInMap(dayNumber , dailyMeasurement, result);
-
+            for (Users.UserInfo.DailyMeasurement dailyMeasurement : dailyMeasurementList) {
+                int dayNumber = Util.extractDayNumberFromDate(dailyMeasurement.getMeasurementDate());
+                Util.replaceInMap(dayNumber , dailyMeasurement, result);
+            }
         }
         return result;
     }

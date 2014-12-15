@@ -276,7 +276,7 @@ public class TableOfMeasurements extends javax.swing.JFrame {
     private void loadData() {
 
         extractLastSevenDailyMeasurements = userBusiness.extractLastSevenDailyMeasurements();
-
+        
         nameLabel.setText((Util.currentLoginUser.getName() != null) ? Util.currentLoginUser.getName() : "");
         genderLabel.setText((Util.currentLoginUser.getGender() != null) ? Util.currentLoginUser.getGender() : "");
         typeLabel.setText((Util.currentLoginUser.getTypeOfDiabetic() != null) ? Util.currentLoginUser.getTypeOfDiabetic() : "");
@@ -284,34 +284,30 @@ public class TableOfMeasurements extends javax.swing.JFrame {
     }
 
     private void initializeDataTable() {
-        List<String> columns = new ArrayList();
+        if(extractLastSevenDailyMeasurements!=null){
+            
+            List<String> columns = new ArrayList();
         
-        for(String time : Util.times)
-        {
-        columns.add(Util.camelCasingStylingToNormal(time));
-        }
-        
-        
-        List<String[]> values = new ArrayList<String[]>();
-
-        for (int day : extractLastSevenDailyMeasurements.keySet()) {
-            Users.UserInfo.DailyMeasurement data = extractLastSevenDailyMeasurements.get(day);
-            List<String> rowData = new ArrayList();
-
-            rowData.add(String.format("%s %s", Util.refineWidth(Util.toDateString(data.getMeasurementDate()), 11), Util.weekDays[day]));
-            if (data == null) {
-                data = new Users.UserInfo.DailyMeasurement();
+            for(String time : Util.times){
+                columns.add(Util.camelCasingStylingToNormal(time));
             }
-            rowData.addAll(Arrays.asList(data.getDataAsStringArray()));
+            List<String[]> values = new ArrayList<String[]>();
 
-            values.add(rowData.toArray(new String[rowData.size()]));
+            for (int day : extractLastSevenDailyMeasurements.keySet()) {
+                Users.UserInfo.DailyMeasurement data = extractLastSevenDailyMeasurements.get(day);
+                List<String> rowData = new ArrayList();
 
-            Collections.sort(rowData);
-
+                rowData.add(String.format("%s %s", Util.refineWidth(Util.toDateString(data.getMeasurementDate()), 11), Util.weekDays[day]));
+                if (data == null) {
+                    data = new Users.UserInfo.DailyMeasurement();
+                rowData.addAll(Arrays.asList(data.getDataAsStringArray()));
+                values.add(rowData.toArray(new String[rowData.size()]));
+                Collections.sort(rowData);
+            }
+            TableModel tableModel = new DefaultTableModel(values.toArray(new Object[][]{}), columns.toArray());
+            measrementTable.setModel(tableModel);
+            System.out.println();
+            }
         }
-        TableModel tableModel = new DefaultTableModel(values.toArray(new Object[][]{}), columns.toArray());
-        measrementTable.setModel(tableModel);
-        System.out.println();
     }
-
 }
