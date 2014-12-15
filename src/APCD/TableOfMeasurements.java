@@ -1,10 +1,10 @@
 package APCD;
 
-import business.DailyMeasurementReportHandler;
 import business.UserBusiness;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import javax.swing.*;
@@ -24,26 +24,23 @@ public class TableOfMeasurements extends javax.swing.JFrame {
     /**
      * Creates new form TableOfMeasurements
      */
-   
     private static TableOfMeasurements instance;
+
     private TableOfMeasurements() {
         initComponents();
         initForm();
-        
+
     }
-    
-    public static TableOfMeasurements getInstance()
-    {
-        if(instance == null)
-        {
+
+    public static TableOfMeasurements getInstance() {
+        if (instance == null) {
             instance = new TableOfMeasurements();
         }
-        
-       
-         instance.loadData() ;
-         instance.initializeDataTable();
-         return instance;
-    
+
+        instance.loadData();
+        instance.initializeDataTable();
+        return instance;
+
     }
 
     private void initForm() {
@@ -68,10 +65,15 @@ public class TableOfMeasurements extends javax.swing.JFrame {
         measrementTable = new javax.swing.JTable();
         nameLabel = new javax.swing.JLabel();
         sendMail = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        genderLabel = new javax.swing.JLabel();
+        nameLabel1 = new javax.swing.JLabel();
+        nameLabel2 = new javax.swing.JLabel();
+        nameLabel3 = new javax.swing.JLabel();
+        typeLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Measurement view");
+        setResizable(false);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/infoPic.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -95,32 +97,17 @@ public class TableOfMeasurements extends javax.swing.JFrame {
         measrementTable.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         measrementTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"A_sleep", null, null, null, null, null, null, null},
-                {"Breackfast", null, null, null, null, null, null, null},
-                {"Lunch", null, null, null, null, null, null, null},
-                {"Diner", null, null, null, null, null, null, null},
-                {"B_Sleep", null, null, null, null, null, null, null},
-                {"Sudn_Drop", null, null, null, null, null, null, null}
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                " ", "Saturday", "Sunday", "Monday ", "Tuesday ", "Wednesday ", "Thursday", "Friday"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, true
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         measrementTable.setSelectionBackground(new java.awt.Color(50, 178, 233));
         jScrollPane1.setViewportView(measrementTable);
 
@@ -135,38 +122,48 @@ public class TableOfMeasurements extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("PDF");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        genderLabel.setFont(new java.awt.Font("Footlight MT Light", 1, 18)); // NOI18N
+        genderLabel.setText("v_Gender");
+
+        nameLabel1.setFont(new java.awt.Font("Footlight MT Light", 1, 18)); // NOI18N
+        nameLabel1.setText("NAME : ");
+
+        nameLabel2.setFont(new java.awt.Font("Footlight MT Light", 1, 18)); // NOI18N
+        nameLabel2.setText("Type :");
+
+        nameLabel3.setFont(new java.awt.Font("Footlight MT Light", 1, 18)); // NOI18N
+        nameLabel3.setText("Gender :");
+
+        typeLabel.setFont(new java.awt.Font("Footlight MT Light", 1, 18)); // NOI18N
+        typeLabel.setText("v_type");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1347, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addComponent(nameLabel)
-                                .addGap(0, 457, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(ExitMeasurTabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sendMail, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel5))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(nameLabel1)
+                            .addComponent(nameLabel2)
+                            .addComponent(nameLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nameLabel)
+                            .addComponent(genderLabel)
+                            .addComponent(typeLabel))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(ExitMeasurTabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sendMail, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -177,9 +174,19 @@ public class TableOfMeasurements extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(nameLabel)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nameLabel)
+                            .addComponent(nameLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(genderLabel)
+                            .addComponent(nameLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nameLabel2)
+                            .addComponent(typeLabel))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,8 +194,7 @@ public class TableOfMeasurements extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(sendMail, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(sendMail, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(22, 22, 22))
         );
 
@@ -196,7 +202,7 @@ public class TableOfMeasurements extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ExitMeasurTabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitMeasurTabelActionPerformed
-        DailyMeasurement dm =  DailyMeasurement.getInstance();
+        DailyMeasurement dm = DailyMeasurement.getInstance();
         dm.setVisible(true);
         this.setVisible(false);
 
@@ -209,25 +215,23 @@ public class TableOfMeasurements extends javax.swing.JFrame {
     private void sendMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendMailActionPerformed
         // TODO add your handling code here:
         Util.fireEmail(Util.currentLoginUser.getEmail(), userBusiness.prepareUserDetailsString());
-        
-    }//GEN-LAST:event_sendMailActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        
-        new DailyMeasurementReportHandler(extractLastSevenDailyMeasurements);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_sendMailActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ExitMeasurTabel;
+    private javax.swing.JLabel genderLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable measrementTable;
     private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel nameLabel1;
+    private javax.swing.JLabel nameLabel2;
+    private javax.swing.JLabel nameLabel3;
     private javax.swing.JButton sendMail;
+    private javax.swing.JLabel typeLabel;
     // End of variables declaration//GEN-END:variables
 
     UserBusiness userBusiness = new UserBusiness();
@@ -237,33 +241,42 @@ public class TableOfMeasurements extends javax.swing.JFrame {
     private void loadData() {
 
         extractLastSevenDailyMeasurements = userBusiness.extractLastSevenDailyMeasurements();
-        
-        nameLabel.setText( (Util.currentLoginUser.getName()!=null) ?Util.currentLoginUser.getName() : ""  );
+
+        nameLabel.setText((Util.currentLoginUser.getName() != null) ? Util.currentLoginUser.getName() : "");
+        genderLabel.setText((Util.currentLoginUser.getGender() != null) ? Util.currentLoginUser.getGender() : "");
+        typeLabel.setText((Util.currentLoginUser.getTypeOfDiabetic() != null) ? Util.currentLoginUser.getTypeOfDiabetic() : "");
 
     }
 
     private void initializeDataTable() {
-        List<String> columns = Arrays.asList(Util.times);
+        List<String> columns = new ArrayList();
+        
+        for(String time : Util.times)
+        {
+        columns.add(Util.camelCasingStylingToNormal(time));
+        }
+        
+        
         List<String[]> values = new ArrayList<String[]>();
 
         for (int day : extractLastSevenDailyMeasurements.keySet()) {
             Users.UserInfo.DailyMeasurement data = extractLastSevenDailyMeasurements.get(day);
             List<String> rowData = new ArrayList();
-            
-            rowData.add(Util.weekDays[day]);
-            if(data == null)
-            {   
-                data = new  Users.UserInfo.DailyMeasurement();
+
+            rowData.add(String.format("%s %s", Util.refineWidth(Util.toDateString(data.getMeasurementDate()), 11), Util.weekDays[day]));
+            if (data == null) {
+                data = new Users.UserInfo.DailyMeasurement();
             }
             rowData.addAll(Arrays.asList(data.getDataAsStringArray()));
-            
-           values.add( rowData.toArray(new String[rowData.size()]));
 
-            
+            values.add(rowData.toArray(new String[rowData.size()]));
+
+            Collections.sort(rowData);
+
         }
-        TableModel tableModel = new DefaultTableModel(values.toArray(new Object[][] {}), columns.toArray());
-measrementTable.setModel(tableModel);
+        TableModel tableModel = new DefaultTableModel(values.toArray(new Object[][]{}), columns.toArray());
+        measrementTable.setModel(tableModel);
         System.out.println();
     }
-    
+
 }

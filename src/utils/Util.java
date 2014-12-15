@@ -35,9 +35,9 @@ public class Util {
 
     public final static int BUTTON_WIDTH = 100;
     public final static int BUTTON_HEIGHT = 30;
-    public final static String TYPE1 = "type1";
-    public final static String TYPE2 = "type2";
-    public final static String TYPE3 = "gestationalDiabetes";
+    public final static String TYPE1 = "Type 1 Diabetic .";
+    public final static String TYPE2 = "Type 2 Diabetic .";
+    public final static String TYPE3 = "Gestational Diabetes.";
     public final static String day = "Day";
 
     public final static String beforeBreakfast = "beforeBreakfast";
@@ -293,7 +293,8 @@ public class Util {
         minDate = trimTimeFromCalendar(minDate);
         maxDate = trimTimeFromCalendar(maxDate);
         dateToCheck = trimTimeFromCalendar(dateToCheck);
-        return (dateToCheck.after(minDate) && dateToCheck.before(maxDate));
+        boolean result = ( ( dateToCheck.after(minDate) || dateToCheck.compareTo(minDate) ==0 ) && (dateToCheck.before(maxDate)||dateToCheck.compareTo(maxDate)==0));
+        return result;
 
     }
 
@@ -350,6 +351,24 @@ public class Util {
         }
 
         if (c.length() < 20) {
+            int remaining = 20 - c.length();
+            for (int i = 0; i < remaining; i++) {
+
+                c += " ";
+            }
+
+        }
+
+        return c;
+    }
+    
+    public static String refineWidth(String c , int width) {
+
+        if (c == null) {
+            c = new String();
+        }
+
+        if (c.length() < width) {
             int remaining = 20 - c.length();
             for (int i = 0; i < remaining; i++) {
 
@@ -524,5 +543,12 @@ public class Util {
         timeSpinner.setEditor(timeEditor);
         timeSpinner.setValue(date.toGregorianCalendar().getTime());
     }
-     
+     public static String toDateString(XMLGregorianCalendar date)
+     {
+         if(date!=null)
+         {
+             return String.format("%s-%s-%s ",(date.getDay()>=10)?date.getDay():"0"+date.getDay() , date.getMonth() , date.getYear());
+         }
+         return "";
+     }
 }

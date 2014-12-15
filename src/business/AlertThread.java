@@ -38,6 +38,7 @@ public class AlertThread extends Thread {
                     for (String key : datesToNotify.keySet()) {
                         XMLGregorianCalendar xmlGregorianCalendar = datesToNotify.get(key);
                         {
+                            
                             if (Util.areTimesEqualsEachOthersBySecond(xmlGregorianCalendar, new Date())) {
                                 NotifyUser(key);
                                 Util.removeFromMap(datesToNotify , key);
