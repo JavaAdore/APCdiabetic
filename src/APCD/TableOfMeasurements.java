@@ -58,6 +58,7 @@ public class TableOfMeasurements extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         ExitMeasurTabel = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -73,7 +74,10 @@ public class TableOfMeasurements extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Measurement view");
+        setPreferredSize(new java.awt.Dimension(1050, 432));
         setResizable(false);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/infoPic.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -91,10 +95,11 @@ public class TableOfMeasurements extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/apc diabetic2.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/apc diabeticlogo DailyM.png"))); // NOI18N
 
         measrementTable.setAutoCreateRowSorter(true);
-        measrementTable.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        measrementTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204)));
+        measrementTable.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
         measrementTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -108,13 +113,18 @@ public class TableOfMeasurements extends javax.swing.JFrame {
 
             }
         ));
-        measrementTable.setSelectionBackground(new java.awt.Color(50, 178, 233));
+        measrementTable.setToolTipText("Table of Measurments");
+        measrementTable.setGridColor(new java.awt.Color(204, 255, 204));
+        measrementTable.setRowHeight(26);
+        measrementTable.setSelectionBackground(new java.awt.Color(255, 255, 204));
+        measrementTable.setSelectionForeground(new java.awt.Color(153, 0, 0));
         jScrollPane1.setViewportView(measrementTable);
 
-        nameLabel.setFont(new java.awt.Font("Footlight MT Light", 1, 18)); // NOI18N
+        nameLabel.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        nameLabel.setForeground(new java.awt.Color(0, 51, 255));
         nameLabel.setText("NAME");
 
-        sendMail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Mail.png"))); // NOI18N
+        sendMail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Mail-icon.png"))); // NOI18N
         sendMail.setToolTipText("Send to Email");
         sendMail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,80 +132,104 @@ public class TableOfMeasurements extends javax.swing.JFrame {
             }
         });
 
-        genderLabel.setFont(new java.awt.Font("Footlight MT Light", 1, 18)); // NOI18N
+        genderLabel.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        genderLabel.setForeground(new java.awt.Color(0, 51, 255));
         genderLabel.setText("v_Gender");
 
-        nameLabel1.setFont(new java.awt.Font("Footlight MT Light", 1, 18)); // NOI18N
-        nameLabel1.setText("NAME : ");
+        nameLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        nameLabel1.setForeground(new java.awt.Color(0, 153, 51));
+        nameLabel1.setText("NAME   : ");
 
-        nameLabel2.setFont(new java.awt.Font("Footlight MT Light", 1, 18)); // NOI18N
-        nameLabel2.setText("Type :");
+        nameLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        nameLabel2.setForeground(new java.awt.Color(0, 153, 51));
+        nameLabel2.setText("Type     :");
 
-        nameLabel3.setFont(new java.awt.Font("Footlight MT Light", 1, 18)); // NOI18N
+        nameLabel3.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        nameLabel3.setForeground(new java.awt.Color(0, 153, 51));
         nameLabel3.setText("Gender :");
 
-        typeLabel.setFont(new java.awt.Font("Footlight MT Light", 1, 18)); // NOI18N
+        typeLabel.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        typeLabel.setForeground(new java.awt.Color(0, 51, 255));
         typeLabel.setText("v_type");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(348, 348, 348)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nameLabel1)
+                            .addComponent(nameLabel2)
+                            .addComponent(nameLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nameLabel)
+                            .addComponent(genderLabel)
+                            .addComponent(typeLabel))
+                        .addGap(187, 187, 187)
+                        .addComponent(jLabel5)
+                        .addGap(0, 17, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(sendMail, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(438, 438, 438))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(22, 22, 22)
+                    .addComponent(ExitMeasurTabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(1291, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nameLabel)
+                            .addComponent(nameLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(genderLabel)
+                            .addComponent(nameLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nameLabel2)
+                            .addComponent(typeLabel)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jButton1))
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sendMail, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(37, 37, 37)
+                    .addComponent(ExitMeasurTabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(334, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1347, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nameLabel1)
-                            .addComponent(nameLabel2)
-                            .addComponent(nameLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nameLabel)
-                            .addComponent(genderLabel)
-                            .addComponent(typeLabel))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(ExitMeasurTabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sendMail, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5)))
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nameLabel)
-                            .addComponent(nameLabel1))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(genderLabel)
-                            .addComponent(nameLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nameLabel2)
-                            .addComponent(typeLabel))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ExitMeasurTabel)
-                    .addComponent(jLabel5)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(sendMail, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(22, 22, 22))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -224,6 +258,7 @@ public class TableOfMeasurements extends javax.swing.JFrame {
     private javax.swing.JLabel genderLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable measrementTable;
     private javax.swing.JLabel nameLabel;

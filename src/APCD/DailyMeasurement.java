@@ -141,8 +141,10 @@ public class DailyMeasurement extends javax.swing.JFrame {
             }
         });
 
+        timesettingButton.setBackground(new java.awt.Color(255, 255, 255));
         timesettingButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clock.png"))); // NOI18N
         timesettingButton.setToolTipText("Setting Notifications Times");
+        timesettingButton.setBorder(null);
         timesettingButton.setName("Time Setting"); // NOI18N
         timesettingButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -302,13 +304,14 @@ public class DailyMeasurement extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addGroup(measurePanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(measurePanelMainLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
                         .addGroup(measurePanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(timesettingButton)
-                            .addComponent(calculateButton)
-                            .addComponent(TableOfMeasurementsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(timesettingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(measurePanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(TableOfMeasurementsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(calculateButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(15, 15, 15)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(measurePanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

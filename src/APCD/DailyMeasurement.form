@@ -57,9 +57,9 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
                           <Component id="timesettingButton" min="-2" pref="58" max="-2" attributes="0"/>
-                          <EmptySpace min="52" pref="52" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                           <Component id="calculateButton" min="-2" pref="61" max="-2" attributes="0"/>
-                          <EmptySpace min="59" pref="59" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace min="62" pref="62" max="-2" attributes="0"/>
@@ -110,13 +110,15 @@
                   <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel1" min="-2" pref="64" max="-2" attributes="0"/>
-                      <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="timesettingButton" min="-2" max="-2" attributes="0"/>
-                              <Component id="calculateButton" min="-2" max="-2" attributes="0"/>
-                              <Component id="TableOfMeasurementsButton" min="-2" pref="65" max="-2" attributes="0"/>
+                              <Component id="timesettingButton" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="TableOfMeasurementsButton" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="calculateButton" alignment="0" min="-2" pref="62" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -220,10 +222,16 @@
         </Component>
         <Component class="javax.swing.JButton" name="timesettingButton">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/images/clock.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Setting Notifications Times"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
             <Property name="name" type="java.lang.String" value="Time Setting" noResource="true"/>
           </Properties>
           <Events>
